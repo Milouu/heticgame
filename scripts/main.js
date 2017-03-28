@@ -1,32 +1,89 @@
-var cube = document.querySelector(".image"),
-    posX = 840,
-    posY = 0,
-    dirX = 10,
-    dirY = 0,
-    largeurJeu = 960,
-    hauteurJeu = 600,
-    vitesse = 40;
+$(document).ready(function(){
 
-init();
-function init(){
-  jeu.style.width = largeurJeu+"px";
-  jeu.style.height = hauteurJeu+"px";
-  setInterval(
-    function(){
-      bougerCube();
-    }
-    ,
-    vitesse
-  );
-}
+  var cube1 = $("#orange"),
+      jeu = $("#jeu"),
+      backgroundImages = $("#background>image"),
+      posX = 840,
+      posY = 0,
+      dirX = 10,
+      dirY = 0,
+      largeurJeu = 960,
+      hauteurJeu = 500,
+      vitesse = 40,
+      cube2 = $("#bleu"),
+      posA = 840,
+      posB = 150,
+      dirA = 10,
+      dirB = 0,
+      cube3 = $("#vert"),
+      posC = 840,
+      posD = 300,
+      dirC = 10,
+      dirD = 0;
 
-function bougerCube(){
-  posX = posX - dirX;
-  posY = posY + dirY;
-  cube.style.left = posX+"px";
-  cube.style.top = posY+"px";
-  
-  if(posX < 0){
-    posX = 840;
+  /*
+  $(function(){
+    var x = 0;
+    setInterval(function(){
+      x-=1;
+      $('#jeu').css('background-position', x);
+    }, 14);
+*/
+
+  function deroulerBackground(){
+    var x = 0;
+    setInterval(function(){
+      x =-1;
+      backgroundImages[O].css('background-position', x);
+    }, 10); 
   }
-}
+
+  init();
+  function init(){
+    jeu.css("width", largeurJeu);
+    jeu.css("height", hauteurJeu);
+    setInterval(
+      function(){
+        bougerCube();
+        bougerCube2();
+        bougerCube3();
+      }
+      ,
+      vitesse
+    );
+  }
+
+  function bougerCube(){
+    posX = posX - dirX;
+    posY = posY + dirY;
+    cube1.css("left", posX);
+    cube1.css("top", posY);
+
+    if(posX < -115){
+      posX = 940;
+    }
+  }
+
+  function bougerCube2(){
+    posA = posA - dirA;
+    posB = posB + dirB;
+    cube2.css("left", posA);
+    cube2.css("top", posB);
+
+    if(posA < -115){
+      posA = 940;
+    }
+  }
+
+  function bougerCube3(){
+    posC = posC - dirC;
+    posD = posD + dirD;
+    cube3.css("left", posC);
+    cube3.css("top", posD);
+
+    if(posC < -115){
+      posC = 940;
+    }
+  }
+
+});
