@@ -4,7 +4,7 @@ $(document).ready(function(){
   // General
   var ball = $("#ball"),
       ballPos = parseInt(ball.css("left")),
-      ballColor = ball.attr("data-color"),
+      ballColor = ball.data("color"), //surveiller crash
       game = $("#game"),
       gameWidth = 960,
       gameHeight = 500,
@@ -53,7 +53,6 @@ $(document).ready(function(){
 
   //Lancement du jeu
   init(); 
-
   //Fonction d'initialisation du jeu
   function init(){ 
     game.css("width", gameWidth);
@@ -217,7 +216,7 @@ $(document).ready(function(){
 
 
 
-  //Fonction gérant les collisions
+  //Fonction gérant les collisions : vérifie sur quel fil se trouve la balle et compare sa position et sa couleur avec celles du bloc
   function collision(){
     if(movCount == 0){
       if(ballPos == posTopX && ballColor != cubesColor[0]){
@@ -227,6 +226,7 @@ $(document).ready(function(){
         console.log("Game Over");
       } else if(ballPos == posTopX && ballColor == cubesColor[0]){
         console.log("Good");
+        generateNewBall();
       }
     } else if(movCount == 1){
 
@@ -241,6 +241,7 @@ $(document).ready(function(){
         console.log("Game Over");
       } else if(ballPos == posMidX && ballColor == cubesColor[1]){
         console.log("Good");
+        generateNewBall();
       } 
     }else if(movCount == 2){
       if(ballPos == posBotX && ballColor != cubesColor[2]){
@@ -250,9 +251,22 @@ $(document).ready(function(){
         console.log("Game Over");
       } else if(ballPos == posBotX && ballColor == cubesColor[2]){
         console.log("Good");
+        generateNewBall();
       }
     }
   }
-
+  
+   //Fonction pour générer une nouvelle balle après être passé dans un cube de bonne couleur
+  function generateNewBall(){
+    ballColor = colors[Math.floor(Math.random()*3)];
+    
+    if(ballColor == 'orange'){
+      ball.attr("src","images/orange_ball.svg");
+    } else if(ballColor == 'blue'){
+      ball.attr("src","images/blue_ball.svg");
+    } else if(ballColor == 'green'){
+      ball.attr("src","images/green_ball.svg");
+    }
+  }
 
 });  
