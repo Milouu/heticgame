@@ -1,26 +1,10 @@
-.side{
-  width:120px;
-  height:500px;
-  background-color:white;
-  position:fixed;
-  z-index:80;
-}
-
-#gauche{
-  left:37px;
-}
-
-#droite{
-  left:1123px;
-  top:8px;
-}
-
 #jeu{
   width:960px;
   height:400px;
   margin:0 auto;
   border:3px solid black;
   position:relative;
+  overflow:hidden;
 }
 
 #balle{
