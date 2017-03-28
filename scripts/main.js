@@ -1,30 +1,43 @@
 $(document).ready(function(){
 
-
-  var cube1 = $("#orange"),
-      balle = $("#balle"),
+    // General 
+  
+  var balle = $("#balle"),
       jeu = $("#jeu"),
+      largeurJeu = 960,
+      hauteurJeu = 500,
+      vitesse = 40,
+      
+    // Deplacement balle  
       deplacements = [50,200,350],
       depCount = 1,
       
-    //background
+    // Background
+      
       bgFar = $("#bg_far"),
       bgMid = $("#bg_middle"),
       bgFront = $("#bg_front"),
       bgImages = [bgFar, bgMid, bgFront],
       
+    // Cubes
+      // Cube1
+      
+      cube1 = $("#orange"),
       posX = 840,
       posY = 0,
       dirX = 10,
       dirY = 0,
-      largeurJeu = 960,
-      hauteurJeu = 500,
-      vitesse = 40,
+      
+      // Cube2
+      
       cube2 = $("#bleu"),
       posA = 840,
       posB = 150,
       dirA = 10,
       dirB = 0,
+      
+      // Cube3
+      
       cube3 = $("#vert"),
       posC = 840,
       posD = 300,
@@ -33,7 +46,9 @@ $(document).ready(function(){
 
 
   init();
-  function init(){
+  
+  //Fonction d'initialisation du jeu
+  function init(){ 
     jeu.css("width", largeurJeu);
     jeu.css("height", hauteurJeu);
     balle.css("top", deplacements[depCount]);
@@ -50,11 +65,13 @@ $(document).ready(function(){
     );
   }
   
-  // DEROULEMENT BACKGROUND
+  // Fonctions de déroulement du background
   
   bgFarMovement();
   bgMidMovement();
   bgFrontMovement();
+  
+    //Fonction déroulement des montagnes du fond
   
   function bgFarMovement(){
     var x=0;
@@ -75,24 +92,30 @@ $(document).ready(function(){
     }, 14);
   }
   
+    //Fonction déplacement des montagnes du milieu
+  
   function bgMidMovement(){
     var x = 0;
     
     setInterval(function(){
-      x-=2;
+      x-=1;
       bgMid.css("background-position", x);
     }, 14);
   }
+  
+    //Fonction déplacement des montagnes avant
   
   function bgFrontMovement(){
     var x = 0;
     
      setInterval(function(){
-      x-=3;
+      x-=1;
       bgFront.css("background-position", x);
     }, 14);
   }
 
+  //Fonction de déplacement des cubes 
+  
   function bougerCube(){
     posX = posX - dirX;
     posY = posY + dirY;
@@ -127,7 +150,7 @@ $(document).ready(function(){
   }
 
     
-
+  //Fonction de déplacement de la balle à l'appui sur les touches
 
   $(document).keydown(function(touche){
     var appui = touche.which || touche.keyCode;
