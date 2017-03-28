@@ -210,15 +210,5 @@ $(document).ready(function(){
         }
       }  
     }
-  }
-  
-  /*
-    //Fonction gérant les collisions
-  function collision(){
-    if(movCount == 0){
-      if(ballPos == posTopXX && ballColor != cubeColor)
-    }
-  }
-  */
-  
+  } 
 });  
