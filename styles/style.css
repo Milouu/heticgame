@@ -1,3 +1,9 @@
+/**************************
+
+          GENERAL
+
+**************************/
+
 #jeu{
   width:960px;
   height:400px;
@@ -22,23 +28,50 @@
   margin:15px /*auto*/;
 }
 
+/*********************
+
+      BACKGROUND
+
+*********************/
+
+.bg{
+  width: 960px;
+  height: 500px;;
+  position: absolute;
+  bottom: 0;
+}
+
+#bg_far{
+  background-image: url("../images/background_0.png");
+  background-size: cover;
+  background-position: bottom;
+  
+}
+
+#bg_middle{
+  background-image: url("../images/background_1.png");
+  background-size: cover;
+  background-position: bottom;
+  
+}
+
+#bg_front{
+  background-image: url("../images/background_2.png");
+  background-size: cover;
+  background-position: bottom;
+ 
+}
+
+/*********************
+
+        CUBES
+
+*********************/
+
 #orange{
   margin-top:30px;
   position:absolute;
   top:0;
-  left:940px;
-}
-
-#bleu{
-  margin-bottom:85px;
-  position:absolute;
-  top:150px;
-  left:940px;
-}
-
-#vert{
-  position:absolute;
-  top:300px;
   left:940px;
 }
 

@@ -6,6 +6,13 @@ $(document).ready(function(){
       jeu = $("#jeu"),
       deplacements = [50,200,350],
       depCount = 1,
+      
+    //background
+      bgFar = $("#bg_far"),
+      bgMid = $("#bg_middle"),
+      bgFront = $("#bg_front"),
+      bgImages = [bgFar, bgMid, bgFront],
+      
       posX = 840,
       posY = 0,
       dirX = 10,
@@ -30,6 +37,7 @@ $(document).ready(function(){
     jeu.css("width", largeurJeu);
     jeu.css("height", hauteurJeu);
     balle.css("top", deplacements[depCount]);
+    console.log(bgImages);
 
     setInterval(
       function(){
@@ -40,6 +48,49 @@ $(document).ready(function(){
       ,
       vitesse
     );
+  }
+  
+  // DEROULEMENT BACKGROUND
+  
+  bgFarMovement();
+  bgMidMovement();
+  bgFrontMovement();
+  
+  function bgFarMovement(){
+    var x=0;
+    /*     
+        vitesseBg = 10;
+   
+    for(var i=0; i<bgImages.length; i++){
+      setInterval(function(){
+        x-=1;
+        bgImages[i].css("background-position", x);
+      }, vitesseBg * (i+1));
+    }
+    */
+    
+    setInterval(function(){
+      x-=1;
+      bgFar.css("background-position", x);
+    }, 14);
+  }
+  
+  function bgMidMovement(){
+    var x = 0;
+    
+    setInterval(function(){
+      x-=2;
+      bgMid.css("background-position", x);
+    }, 14);
+  }
+  
+  function bgFrontMovement(){
+    var x = 0;
+    
+     setInterval(function(){
+      x-=3;
+      bgFront.css("background-position", x);
+    }, 14);
   }
 
   function bougerCube(){
