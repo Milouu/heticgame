@@ -87,3 +87,27 @@
   top:300px;
   left:940px;
 }
+
+/*********************
+
+        FIL
+
+*********************/
+
+#fil1{
+  position:absolute;
+  top:79px;
+  left:0;
+}
+
+#fil2{
+  position:absolute;
+  top:214px;
+  left:0;
+}
+
+#fil3{
+  position:absolute;
+  top:364px;
+  left:0;
+}
