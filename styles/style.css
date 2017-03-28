@@ -94,20 +94,19 @@
 
 *********************/
 
-#wire1{
+.wire{
   position:absolute;
+  left: 0;
+}
+
+#wire1{
   top:79px;
-  left:0;
 }
 
 #wire2{
-  position:absolute;
   top:214px;
-  left:0;
 }
 
 #wire3{
-  position:absolute;
   top:364px;
-  left:0;
 }
