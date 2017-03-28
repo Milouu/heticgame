@@ -1,7 +1,11 @@
 $(document).ready(function(){
 
+
   var cube1 = $("#orange"),
+      balle = $("#balle"),
       jeu = $("#jeu"),
+      deplacements = [50,200,350],
+      depCount = 1,
       posX = 840,
       posY = 0,
       dirX = 10,
@@ -20,10 +24,13 @@ $(document).ready(function(){
       dirC = 10,
       dirD = 0;
 
+
   init();
   function init(){
     jeu.css("width", largeurJeu);
     jeu.css("height", hauteurJeu);
+    balle.css("top", deplacements[depCount]);
+
     setInterval(
       function(){
         bougerCube();
@@ -67,5 +74,25 @@ $(document).ready(function(){
       posC = 940;
     }
   }
+
+    
+
+
+  $(document).keydown(function(touche){
+    var appui = touche.which || touche.keyCode;
+    var top = parseInt(balle.css("top"));
+    if(appui == 38 || appui == 90){
+      if(depCount>0){
+        depCount --;
+      }
+      balle.css("top", deplacements[depCount]);  
+    } else if(appui == 40 || appui == 83){
+      if(depCount<2){
+        depCount ++;
+      }
+      balle.css("top", deplacements[depCount]);
+    }
+  });
+
 
 });
