@@ -4,7 +4,7 @@
 
 **************************/
 
-#jeu{
+#game{
   width:960px;
   height:400px;
   margin:0 auto;
@@ -13,7 +13,7 @@
   overflow:hidden;
 }
 
-#balle{
+#ball{
   width:50px;
   height:50px;
   border-radius:50px;
@@ -94,19 +94,19 @@
 
 *********************/
 
-#fil1{
+#wire1{
   position:absolute;
   top:79px;
   left:0;
 }
 
-#fil2{
+#wire2{
   position:absolute;
   top:214px;
   left:0;
 }
 
-#fil3{
+#wire3{
   position:absolute;
   top:364px;
   left:0;
