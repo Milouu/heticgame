@@ -9,7 +9,7 @@ $(document).ready(function(){
       vitesse = 40,
       
     // Deplacement balle  
-      deplacements = [54,189,339],
+      deplacements = [55,189,339],
       depCount = 1,
       
     // Background
