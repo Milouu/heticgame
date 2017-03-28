@@ -2,7 +2,6 @@ $(document).ready(function(){
 
   var cube1 = $("#orange"),
       jeu = $("#jeu"),
-      backgroundImages = $("#background>image"),
       posX = 840,
       posY = 0,
       dirX = 10,
@@ -20,23 +19,6 @@ $(document).ready(function(){
       posD = 300,
       dirC = 10,
       dirD = 0;
-
-  /*
-  $(function(){
-    var x = 0;
-    setInterval(function(){
-      x-=1;
-      $('#jeu').css('background-position', x);
-    }, 14);
-*/
-
-  function deroulerBackground(){
-    var x = 0;
-    setInterval(function(){
-      x =-1;
-      backgroundImages[O].css('background-position', x);
-    }, 10); 
-  }
 
   init();
   function init(){
