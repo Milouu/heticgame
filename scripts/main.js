@@ -4,7 +4,7 @@ $(document).ready(function(){
   var cube1 = $("#orange"),
       balle = $("#balle"),
       jeu = $("#jeu"),
-      deplacements = [50,200,350],
+      deplacements = [54,189,339],
       depCount = 1,
       
     //background
