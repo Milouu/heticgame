@@ -4,7 +4,7 @@
 
 **************************/
 
-#jeu{
+#game{
   width:960px;
   height:400px;
   margin:0 auto;
@@ -13,7 +13,7 @@
   overflow:hidden;
 }
 
-#balle{
+#ball{
   width:50px;
   height:50px;
   border-radius:50px;
@@ -64,6 +64,23 @@
 
 /*********************
 
+        SCORE
+
+*********************/
+
+#score{
+  position : absolute;
+  top: 5px;
+  left: 5px;
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-size: 42px;
+  color: #ffffff;
+  z-index: 99;
+}
+
+/*********************
+
         CUBES
 
 *********************/
@@ -73,7 +90,6 @@
   position:absolute;
   top:0;
   left:940px;
-  margin-top:31px;
 }
 
 #midCube{
@@ -89,26 +105,46 @@
   left:940px;
 }
 
+#topCube2{
+  margin-top:30px;
+  position:absolute;
+  top:0;
+  left:1340px;
+}
+
+#midCube2{
+  margin-bottom:85px;
+  position:absolute;
+  top:150px;
+  left:1340px;
+}
+
+#botCube2{
+  position:absolute;
+  top:300px;
+  left:1340px;
+}
+
 /*********************
 
         FILS
 
 *********************/
 
-#fil1{
+.wire{
   position:absolute;
-  top:80px;
-  left:0;
+  left: 0;
+  width: 1040px; 
 }
 
-#fil2{
-  position:absolute;
+#wire1{
+  top:79px;
+}
+
+#wire2{
   top:214px;
-  left:0;
 }
 
-#fil3{
-  position:absolute;
+#wire3{
   top:364px;
-  left:0;
 }
