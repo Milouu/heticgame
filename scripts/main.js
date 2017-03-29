@@ -27,92 +27,53 @@ $(document).ready(function(){
       wires = $('.wire'),
 
       // Cubes
-      cubeSpeed = 10,
-      
-      // Top Cube
-      //topCube = $("#topCube"),
-      posTopX = 940,
-      posTopY = 0,
-      //halfTopCube = $("#halfTopCube"),
-
-      // Middle Cube
-      //midCube = $("#midCube"),
-      posMidX = 940,
-      posMidY = 150,
-      //halfMidCube = $("#halfMidCube"),
-
-      // Bottom Cube
-      //botCube = $("#botCube"),
-      posBotX = 940,
-      posBotY = 300,
-      //halfBotCube = $("#halfBotCube"),
-
-      // Top Cube2
-      //topCube2 = $("#topCube2"),
-      posTopX2 = 1490,
-      posTopY2 = 0,
-      //halfTopCube2 = $("#halfTopCube2"),
-
-
-      // Middle Cube2
-      //midCube2 = $("#midCube2"),
-      posMidX2 = 1490,
-      posMidY2 = 150,
-      //halfMidCube2 = $("#halfMidCube2"),
-
-
-      // Bottom Cube2
-      //botCube2 = $("#botCube2"),
-      posBotX2 = 1490,
-      posBotY2 = 300,
-      //halfBotCube2 = $("#halfBotCube2"),
-
-      
+      cubeSpeed = 10,     
       cubes = [
         {
           div : $("#topCube"),
           halfDiv : $("#halfTopCube"),
-          pos : posTopX
+          posX : 940,
+          posY : 0
         },
         
         {
           div : $("#midCube"),
           halfDiv : $("#halfMidCube"),
-          pos : posMidX
+          posX : 940,
+          posY : 150
         },
         
         {
           div : $("#botCube"),
           halfDiv : $("#halfbotCube"),
-          pos : posBotX
+          posX : 940,
+          posY : 300
         },
         
         {
           div : $("#topCube2"),
           halfDiv : $("#halfTopCube2"),
-          pos : posTopX2
+          posX : 1490,
+          posY : 0
         },
         
         {
           div : $("#midCube2"),
           halfDiv : $("#halfMidCube2"),
-          pos : posMidX2
+          posX : 1490,
+          posY : 150
         },
         
         {
           div : $("#botCube2"),
           halfDiv : $("#halfbotCube2"),
-          pos : posBotX2
+          posX : 1490,
+          posY : 300
         }
       ],
 /*
       //Generation couleurs
-      //cubes = [topCube, midCube, botCube],
-      halfCubes = [halfTopCube, halfMidCube, halfBotCube],
-      cubesPos = [posTopX, posMidX, posBotX],
-      moreCubes = [topCube2, midCube2, botCube2],
-      moreHalfCubes = [halfTopCube2, halfMidCube2, halfBotCube2],
-      moreCubesPos = [posTopX2, posMidX2, posBotX2],
+      //
       colors = ['orange', 'blue', 'green'],
       randomColor = colors[Math.floor(Math.random()*3)],
       topCubeColor = topCube.data("color"),
@@ -191,12 +152,12 @@ $(document).ready(function(){
     //Fonction de déplacement des cubes 
     function moveCubes(){
       $.each(cubes, function(i, item){
-        item.pos -= cubeSpeed;
-        item.div.css("left", item.pos);
-        item.halfDiv.css("left", item.pos);
+        item.posX -= cubeSpeed;
+        item.div.css("left", item.posX);
+        item.halfDiv.css("left", item.posX);
         
-        if(item.pos < -115){
-          item.pos = 940;
+        if(item.posX < -115){
+          item.posX = 940;
         }
       });
     }
