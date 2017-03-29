@@ -20,59 +20,94 @@ $(document).ready(function(){
       movCount = 1,
 
       // Background
-      bgFar = $("#bg_far"),
-      bgMid = $("#bg_middle"),
-      bgFront = $("#bg_front"),
+      bgs = $(".bg"),
       bgSpeed = 1,
+      
+      // Wires  
+      wires = $('.wire'),
 
       // Cubes
-
       cubeSpeed = 10,
-      // Wires
       
-      wires = $('.wire'),
       // Top Cube
-      topCube = $("#topCube"),
+      //topCube = $("#topCube"),
       posTopX = 940,
       posTopY = 0,
-      halfTopCube = $("#halfTopCube"),
+      //halfTopCube = $("#halfTopCube"),
 
       // Middle Cube
-      midCube = $("#midCube"),
+      //midCube = $("#midCube"),
       posMidX = 940,
       posMidY = 150,
-      halfMidCube = $("#halfMidCube"),
+      //halfMidCube = $("#halfMidCube"),
 
       // Bottom Cube
-      botCube = $("#botCube"),
+      //botCube = $("#botCube"),
       posBotX = 940,
       posBotY = 300,
-      halfBotCube = $("#halfBotCube"),
+      //halfBotCube = $("#halfBotCube"),
 
       // Top Cube2
-      topCube2 = $("#topCube2"),
+      //topCube2 = $("#topCube2"),
       posTopX2 = 1490,
       posTopY2 = 0,
-      halfTopCube2 = $("#halfTopCube2"),
+      //halfTopCube2 = $("#halfTopCube2"),
 
 
       // Middle Cube2
-      midCube2 = $("#midCube2"),
+      //midCube2 = $("#midCube2"),
       posMidX2 = 1490,
       posMidY2 = 150,
-      halfMidCube2 = $("#halfMidCube2"),
+      //halfMidCube2 = $("#halfMidCube2"),
 
 
       // Bottom Cube2
-      botCube2 = $("#botCube2"),
-      posBotX2 = 1490,
+      //botCube2 = $("#botCube2"),
       posBotX2 = 1490,
       posBotY2 = 300,
-      halfBotCube2 = $("#halfBotCube2"),
+      //halfBotCube2 = $("#halfBotCube2"),
 
-
+      
+      cubes = [
+        {
+          div : $("#topCube"),
+          halfDiv : $("#halfTopCube"),
+          pos : posTopX
+        },
+        
+        {
+          div : $("#midCube"),
+          halfDiv : $("#halfMidCube"),
+          pos : posMidX
+        },
+        
+        {
+          div : $("#botCube"),
+          halfDiv : $("#halfbotCube"),
+          pos : posBotX
+        },
+        
+        {
+          div : $("#topCube2"),
+          halfDiv : $("#halfTopCube2"),
+          pos : posTopX2
+        },
+        
+        {
+          div : $("#midCube2"),
+          halfDiv : $("#halfMidCube2"),
+          pos : posMidX2
+        },
+        
+        {
+          div : $("#botCube2"),
+          halfDiv : $("#halfbotCube2"),
+          pos : posBotX2
+        }
+      ],
+/*
       //Generation couleurs
-      cubes = [topCube, midCube, botCube],
+      //cubes = [topCube, midCube, botCube],
       halfCubes = [halfTopCube, halfMidCube, halfBotCube],
       cubesPos = [posTopX, posMidX, posBotX],
       moreCubes = [topCube2, midCube2, botCube2],
@@ -88,7 +123,7 @@ $(document).ready(function(){
       midCube2Color = midCube2.data("color"),
       botCube2Color = botCube2.data("color"),
       moreCubesColor = [topCube2Color, midCube2Color, botCube2Color],
-
+*/
 
       //Sons
       boSound = $("#boSound"),
@@ -118,7 +153,8 @@ $(document).ready(function(){
       setInterval(
         function(){
           scoreDisplay.html(score);
-          generateCubes();
+          moveCubes();
+        /*  generateCubes();
           generateMoreCubes();
           moveTopCube();
           moveMidCube();
@@ -127,7 +163,7 @@ $(document).ready(function(){
           moveMidCube2();
           moveBotCube2();
           collision();
-          moreCollision();
+          moreCollision(); */
         }
         ,
         speed
@@ -146,14 +182,25 @@ $(document).ready(function(){
 
       setInterval(function(){
         x -= bgSpeed;
-        bgFar.css("background-position", x);
-        bgMid.css("background-position", x);
-        bgFront.css("background-position", x);
+        bgs.each(function(){
+          $(this).css("background-position", x);
+        });
       }, 14);
     }
 
     //Fonction de déplacement des cubes 
-
+    function moveCubes(){
+      $.each(cubes, function(i, item){
+        item.pos -= cubeSpeed;
+        item.div.css("left", item.pos);
+        item.halfDiv.css("left", item.pos);
+        
+        if(item.pos < -115){
+          item.pos = 940;
+        }
+      });
+    }
+    /*
     function moveTopCube(){
       posTopX = posTopX - cubeSpeed;
       topCube.css("left", posTopX);
@@ -215,7 +262,7 @@ $(document).ready(function(){
         posBotX2 = 940;
       }
     }
-
+*/
 
     //Fonction de déplacement de la balle à l'appui sur les touches
 
