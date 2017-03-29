@@ -37,6 +37,10 @@
   z-index:99;
 }
 
+@font-face {
+  font-family: "Pixeled";
+  src: url("fonts/Pixeled.ttf");
+}
 /*********************
 
          MENU
