@@ -33,64 +33,63 @@ $(document).ready(function(){
           div : $("#topCube"),
           halfDiv : $("#halfTopCube"),
           posX : 940,
-          posY : 0
+          posY : 0,
+          color : 'orange'
         },
         
         {
           div : $("#midCube"),
           halfDiv : $("#halfMidCube"),
           posX : 940,
-          posY : 150
+          posY : 150,
+          color : 'blue'
         },
         
         {
           div : $("#botCube"),
-          halfDiv : $("#halfbotCube"),
+          halfDiv : $("#halfBotCube"),
           posX : 940,
-          posY : 300
+          posY : 300,
+          color : 'green'
         },
         
         {
           div : $("#topCube2"),
           halfDiv : $("#halfTopCube2"),
           posX : 1490,
-          posY : 0
+          posY : 0,
+          color : null
         },
         
         {
           div : $("#midCube2"),
           halfDiv : $("#halfMidCube2"),
           posX : 1490,
-          posY : 150
+          posY : 150,
+          color : null
         },
         
         {
           div : $("#botCube2"),
-          halfDiv : $("#halfbotCube2"),
+          halfDiv : $("#halfBotCube2"),
           posX : 1490,
-          posY : 300
+          posY : 300,
+          color : null
         }
       ],
-/*
+
       //Generation couleurs
       //
       colors = ['orange', 'blue', 'green'],
       randomColor = colors[Math.floor(Math.random()*3)],
-      topCubeColor = topCube.data("color"),
-      midCubeColor = midCube.data("color"),
-      botCubeColor = botCube.data("color"),
-      cubesColor = [topCubeColor, midCubeColor, botCubeColor],
-      topCube2Color = topCube2.data("color"),
-      midCube2Color = midCube2.data("color"),
-      botCube2Color = botCube2.data("color"),
-      moreCubesColor = [topCube2Color, midCube2Color, botCube2Color],
-*/
 
-      //Sons
+      //Sounds
       boSound = $("#boSound"),
       goodCubeSound = $("#goodCubeSound"),
       gameOverSound = $("#gameOverSound");
 
+  
+  
   //Masque les éléments non voulu dans le menu
   ball.css('display','none');
   wires.css('display','none');
@@ -115,14 +114,8 @@ $(document).ready(function(){
         function(){
           scoreDisplay.html(score);
           moveCubes();
-        /*  generateCubes();
-          generateMoreCubes();
-          moveTopCube();
-          moveMidCube();
-          moveBotCube();
-          moveTopCube2();
-          moveMidCube2();
-          moveBotCube2();
+          generateCubes();
+     /*     generateMoreCubes();
           collision();
           moreCollision(); */
         }
@@ -161,69 +154,8 @@ $(document).ready(function(){
         }
       });
     }
-    /*
-    function moveTopCube(){
-      posTopX = posTopX - cubeSpeed;
-      topCube.css("left", posTopX);
-      halfTopCube.css("left", posTopX);
-      score += (cubeSpeed/10);
-
-      if(posTopX < -115){
-        posTopX = 940;
-      }
-    }
-
-    function moveTopCube2(){
-      posTopX2 = posTopX2 - cubeSpeed;
-      topCube2.css("left", posTopX2);
-      halfTopCube2.css("left", posTopX2);
-      score += (cubeSpeed/10);
-
-      if(posTopX2 < -115){
-        posTopX2 = 940;
-      }
-    }
-
-    function moveMidCube(){
-      posMidX = posMidX - cubeSpeed;
-      midCube.css("left", posTopX);
-      halfMidCube.css("left", posTopX);
-
-      if(posMidX < -115){
-        posMidX = 940;
-      }
-    }
-
-    function moveMidCube2(){
-      posMidX2 = posMidX2 - cubeSpeed;
-      midCube2.css("left", posTopX2);
-      halfMidCube2.css("left", posTopX2);
-
-      if(posMidX2 < -115){
-        posMidX2 = 940;
-      }
-    }
-
-    function moveBotCube(){
-      posBotX = posBotX - cubeSpeed;
-      botCube.css("left", posBotX);
-      halfBotCube.css("left", posTopX);
-
-      if(posBotX < -115){
-        posBotX = 940;
-      }
-    }
-
-    function moveBotCube2(){
-      posBotX2 = posBotX2 - cubeSpeed;
-      botCube2.css("left", posBotX2);
-      halfBotCube2.css("left", posTopX2);
-
-      if(posBotX2 < -115){
-        posBotX2 = 940;
-      }
-    }
-*/
+    
+    
 
     //Fonction de déplacement de la balle à l'appui sur les touches
 
@@ -250,76 +182,41 @@ $(document).ready(function(){
 
     //Renvoie un tableau de 3 couleurs aléatoires
     function generateColorTab(){
-      var color1 = colors[Math.floor(Math.random()*3)],
-          color2 = colors[Math.floor(Math.random()*3)],
-          color3 = colors[Math.floor(Math.random()*3)],
-          randomColors = [color1, color2, color3];
-
-      return randomColors;
+      return [colors[Math.floor(Math.random()*3)], colors[Math.floor(Math.random()*3)], colors[Math.floor(Math.random()*3)]];
     }
-
-    //Fonction générant les cubes
+    
+    function correctColors(colorTab){
+      if((colorTab[0]==colorTab[1] && colorTab[1] == colorTab[2]) || (colorTab[0] != ballColor && colorTab[1] != ballColor && colorTab[2] != ballColor)){
+        return false;
+      } else{
+        return true;
+      }
+    }
+    
+    
     function generateCubes(){
-
-      //Génère les cubes quand ceux-ci sont initialisés ou reviennent à la position de départ
-      if(posTopX == 940){  
-
-        //Sécurise la génération de couleurs pour que les 3 blocs ne soient pas tous de la même couleur et qu'au moins un d'entre eux soient de la couleur de la balle
-        do{ 
-          var colorTab = generateColorTab();
-        }while((colorTab[0]==colorTab[1] && colorTab[1] == colorTab[2]) || (colorTab[0] != ballColor && colorTab[1] != ballColor && colorTab[2] != ballColor));
-
-        //Charge les cubes en fonction du tableau alétoire de couleurs généré
-        for(var i=0; i < cubes.length ; i++){
-          if(colorTab[i] == 'orange'){
-            cubes[i].attr("src", "images/orange_cube_0.png");
-            halfCubes[i].attr("src", "images/orange_cube_1.png");
-            //cubes[i].data('color', 'orange');
-            cubesColor[i] = 'orange';
-          } else if(colorTab[i] == 'blue'){
-            cubes[i].attr("src", "images/blue_cube_0.png");
-            halfCubes[i].attr("src", "images/blue_cube_1.png");
-            //cubes[i].data('color', 'blue');
-            cubesColor[i] = 'blue';
-          } else if(colorTab[i] == 'green'){
-            cubes[i].attr("src", "images/green_cube_0.png");
-            halfCubes[i].attr("src", "images/green_cube_1.png");
-            //cubes[i].data('color', 'green');
-            cubesColor[i] = 'green';
+      do{ 
+        var colorTab = generateColorTab();
+      }while(!correctColors(colorTab));
+      
+      if(cubes[0].posX == 940){ 
+        $.each(cubes, function(i, item){
+          if(item.posX == cubes[0].posX){
+            item.div.attr("src","images/" + colorTab[i] + "_cube_0.png");
+            item.halfDiv.attr("src","images/" + colorTab[i] + "_cube_1.png");
+            item.color = colorTab[i];
           }
-        }  
-      }
-    } 
-
-
-    function generateMoreCubes(){
-
-      //Génère les cubes quand ceux-ci sont initialisés ou reviennent à la position de départ
-      if(posTopX2 == 940){  
-
-        //Sécurise la génération de couleurs pour que les 3 blocs ne soient pas tous de la même couleur et qu'au moins un d'entre eux soient de la couleur de la balle
-        do{ 
-          var colorTab = generateColorTab();
-        }while((colorTab[0]==colorTab[1] && colorTab[1] == colorTab[2]) || (colorTab[0] != ballColor && colorTab[1] != ballColor && colorTab[2] != ballColor));
-
-        //Charge les cubes en fonction du tableau alétoire de couleurs généré
-        for(var i=0; i < moreCubes.length ; i++){
-          if(colorTab[i] == 'orange'){
-            moreCubes[i].attr("src", "images/orange_cube_0.png");
-            moreHalfCubes[i].attr("src", "images/orange_cube_1.png");
-            moreCubesColor[i] = 'orange';
-          } else if(colorTab[i] == 'blue'){
-            moreCubes[i].attr("src", "images/blue_cube_0.png");
-            moreHalfCubes[i].attr("src", "images/blue_cube_1.png");
-            moreCubesColor[i] = 'blue';
-          } else if(colorTab[i] == 'green'){
-            moreCubes[i].attr("src", "images/green_cube_0.png");
-            moreHalfCubes[i].attr("src", "images/green_cube_1.png");
-            moreCubesColor[i] = 'green';
+        });
+      } else if(cubes[3].posX == 940){
+        $.each(cubes, function(i, item){
+          if(item.posX == cubes[3].posX){
+            item.div.attr("src","images/" + colorTab[i-3] + "_cube_0.png");
+            item.halfDiv.attr("src","images/" + colorTab[i-3] + "_cube_1.png");
+            item.color = colorTab[i-3];
           }
-        }  
-      }
-    } 
+        });
+      }                        
+     }  
 
 
     //Fonction gérant les collisions : vérifie sur quel fil se trouve la balle et compare sa position et sa couleur avec celles du bloc
