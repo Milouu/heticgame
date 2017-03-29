@@ -12,6 +12,9 @@ $(document).ready(function(){
       scoreDisplay = $("#score"),
       score = 0,
 
+      // Menu
+      playButton = $('#playButton'),
+      
       // Deplacement balle  
       movements = [54,189,339],
       movCount = 1,
@@ -89,6 +92,16 @@ $(document).ready(function(){
       goodCubeSound = $("#goodCubeSound"),
       gameOverSound = $("#gameOverSound");
 
+  //Masque les éléments non voulu dans le menu
+    ball.css('display','none');
+    wires.css('display','none');
+  
+  //Lancement du jeu au clic 
+    playButton.click(function(){
+    $('#menu').css('display','none');
+    ball.css('display','block');
+    wires.css('display','block');
+      
   //Lancement du jeu
   init(); 
   //Fonction d'initialisation du jeu

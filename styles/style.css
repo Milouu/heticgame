@@ -39,6 +39,79 @@
 
 /*********************
 
+         MENU
+
+*********************/
+
+#menu{
+  width:360px;
+  height:300px;
+  margin:0 auto;
+  position:absolute;
+  z-index: 300;
+  margin-left:300px;
+  padding-bottom: 10px;
+  
+  
+}
+
+#playButton, #shareButton, #joinUsButton{
+  width:360px;
+  height:60px;
+  border-radius:5px;
+  margin-top:15px;
+
+}
+#playButton{
+  background-color:#6bb9f0;
+  
+}
+
+#playButton:hover{
+  background-color:#7fc5ef;
+  transition:all linear 0.3s;
+}
+
+#shareButton{
+  background-color:#f4b350;
+  
+}
+
+#shareButton:hover{
+  background-color:#f4bd73;
+  transition:all linear 0.3s;
+}
+
+#joinUsButton{
+  background-color:#3fc380;
+  
+}
+
+#joinUsButton:hover{
+  background-color:#5acc8e;
+  transition:all linear 0.3s;
+}
+
+#menu h1, #menu p{
+  text-align:center;
+  color:#ffffff;
+  font-family: "Pixeled", sans-serif;
+
+}
+#menu h1{
+  font-size:50px;
+  
+}
+
+#menu p{
+  padding: 10px;
+  font-size:20px;
+  margin:0 auto;
+  
+}
+
+/*********************
+
       BACKGROUND
 
 *********************/
