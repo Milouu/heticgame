@@ -20,12 +20,21 @@
   position:absolute;
   top:50px;
   left:300px;
+  z-index:98;
 }
 
 .cube{
   width:100px;
   height:100px;
   margin:15px /*auto*/;
+  z-index:20;
+}
+
+.halfCube{
+  width:83px;
+  height:87px;
+  margin:15px /*auto*/;
+  z-index:99;
 }
 
 /*********************
@@ -92,14 +101,37 @@
   left:940px;
 }
 
+#halfTopCube{
+  position:absolute;
+  top:0;
+  left:940px;
+  margin-top:36px;
+  margin-left:23px;
+}
+
 #midCube{
-  margin-bottom:85px;
+  position:absolute;
+  top:150px;
+  left:940px;
+}
+
+#halfMidCube{
+  margin-left:23px;
+  margin-top:21px;
   position:absolute;
   top:150px;
   left:940px;
 }
 
 #botCube{
+  position:absolute;
+  top:300px;
+  left:940px;
+}
+
+#halfBotCube{
+  margin-left:22px;
+  margin-top:21px;
   position:absolute;
   top:300px;
   left:940px;
@@ -112,6 +144,14 @@
   left:1340px;
 }
 
+#halfTopCube2{
+  margin-left:23px;
+  margin-top:35px;
+  position:absolute;
+  top:0;
+  left:1340px;
+}
+
 #midCube2{
   margin-bottom:85px;
   position:absolute;
@@ -119,7 +159,23 @@
   left:1340px;
 }
 
+#halfMidCube2{
+  margin-left:23px;
+  margin-top:21px;
+  position:absolute;
+  top:150px;
+  left:1340px;
+}
+
 #botCube2{
+  position:absolute;
+  top:300px;
+  left:1340px;
+}
+
+#halfBotCube2{
+  margin-left:22px;
+  margin-top:21px;
   position:absolute;
   top:300px;
   left:1340px;
