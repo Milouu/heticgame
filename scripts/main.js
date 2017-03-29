@@ -29,27 +29,32 @@ $(document).ready(function(){
       topCube = $("#topCube"),
       posTopX = 940,
       posTopY = 0,
+      halfTopCube = $("#halfTopCube"),
 
       // Middle Cube
       midCube = $("#midCube"),
       posMidX = 940,
       posMidY = 150,
+      halfMidCube = $("#halfMidCube"),
 
       // Bottom Cube
       botCube = $("#botCube"),
       posBotX = 940,
       posBotY = 300,
+      halfBotCube = $("#halfBotCube"),
 
       // Top Cube2
       topCube2 = $("#topCube2"),
       posTopX2 = 1490,
       posTopY2 = 0,
+      halfTopCube2 = $("#halfTopCube2"),
 
 
       // Middle Cube2
       midCube2 = $("#midCube2"),
       posMidX2 = 1490,
       posMidY2 = 150,
+      halfMidCube2 = $("#halfMidCube2"),
 
 
       // Bottom Cube2
@@ -57,12 +62,15 @@ $(document).ready(function(){
       posBotX2 = 1490,
       posBotX2 = 1490,
       posBotY2 = 300,
+      halfBotCube2 = $("#halfBotCube2"),
 
 
       //Generation couleurs
       cubes = [topCube, midCube, botCube],
+      halfCubes = [halfTopCube, halfMidCube, halfBotCube],
       cubesPos = [posTopX, posMidX, posBotX],
       moreCubes = [topCube2, midCube2, botCube2],
+      moreHalfCubes = [halfTopCube2, halfMidCube2, halfBotCube2],
       moreCubesPos = [posTopX2, posMidX2, posBotX2],
       colors = ['orange', 'blue', 'green'],
       randomColor = colors[Math.floor(Math.random()*3)],
@@ -131,6 +139,7 @@ $(document).ready(function(){
   function moveTopCube(){
     posTopX = posTopX - cubeSpeed;
     topCube.css("left", posTopX);
+    halfTopCube.css("left", posTopX);
     score += (cubeSpeed/10);
 
     if(posTopX < -115){
@@ -141,6 +150,7 @@ $(document).ready(function(){
   function moveTopCube2(){
     posTopX2 = posTopX2 - cubeSpeed;
     topCube2.css("left", posTopX2);
+    halfTopCube2.css("left", posTopX2);
     score += (cubeSpeed/10);
 
     if(posTopX2 < -115){
@@ -151,6 +161,7 @@ $(document).ready(function(){
   function moveMidCube(){
     posMidX = posMidX - cubeSpeed;
     midCube.css("left", posTopX);
+    halfMidCube.css("left", posTopX);
 
     if(posMidX < -115){
       posMidX = 940;
@@ -160,6 +171,7 @@ $(document).ready(function(){
   function moveMidCube2(){
     posMidX2 = posMidX2 - cubeSpeed;
     midCube2.css("left", posTopX2);
+    halfMidCube2.css("left", posTopX2);
 
     if(posMidX2 < -115){
       posMidX2 = 940;
@@ -169,6 +181,7 @@ $(document).ready(function(){
   function moveBotCube(){
     posBotX = posBotX - cubeSpeed;
     botCube.css("left", posBotX);
+    halfBotCube.css("left", posTopX);
 
     if(posBotX < -115){
       posBotX = 940;
@@ -178,6 +191,7 @@ $(document).ready(function(){
   function moveBotCube2(){
     posBotX2 = posBotX2 - cubeSpeed;
     botCube2.css("left", posBotX2);
+    halfBotCube2.css("left", posTopX2);
 
     if(posBotX2 < -115){
       posBotX2 = 940;
@@ -232,15 +246,18 @@ $(document).ready(function(){
       //Charge les cubes en fonction du tableau alétoire de couleurs généré
       for(var i=0; i < cubes.length ; i++){
         if(colorTab[i] == 'orange'){
-          cubes[i].attr("src", "images/orange_cube_horizontal.svg");
+          cubes[i].attr("src", "images/orange_cube_0.png");
+          halfCubes[i].attr("src", "images/orange_cube_1.png");
           //cubes[i].data('color', 'orange');
           cubesColor[i] = 'orange';
         } else if(colorTab[i] == 'blue'){
-          cubes[i].attr("src", "images/blue_cube_horizontal.svg");
+          cubes[i].attr("src", "images/blue_cube_0.png");
+          halfCubes[i].attr("src", "images/blue_cube_1.png");
           //cubes[i].data('color', 'blue');
           cubesColor[i] = 'blue';
         } else if(colorTab[i] == 'green'){
-          cubes[i].attr("src", "images/green_cube_horizontal.svg");
+          cubes[i].attr("src", "images/green_cube_0.png");
+          halfCubes[i].attr("src", "images/green_cube_1.png");
           //cubes[i].data('color', 'green');
           cubesColor[i] = 'green';
         }
@@ -262,13 +279,16 @@ $(document).ready(function(){
       //Charge les cubes en fonction du tableau alétoire de couleurs généré
       for(var i=0; i < moreCubes.length ; i++){
         if(colorTab[i] == 'orange'){
-          moreCubes[i].attr("src", "images/orange_cube_horizontal.svg");
+          moreCubes[i].attr("src", "images/orange_cube_0.png");
+          moreHalfCubes[i].attr("src", "images/orange_cube_1.png");
           moreCubesColor[i] = 'orange';
         } else if(colorTab[i] == 'blue'){
-          moreCubes[i].attr("src", "images/blue_cube_horizontal.svg");
+          moreCubes[i].attr("src", "images/blue_cube_0.png");
+          moreHalfCubes[i].attr("src", "images/blue_cube_1.png");
           moreCubesColor[i] = 'blue';
         } else if(colorTab[i] == 'green'){
-          moreCubes[i].attr("src", "images/green_cube_horizontal.svg");
+          moreCubes[i].attr("src", "images/green_cube_0.png");
+          moreHalfCubes[i].attr("src", "images/green_cube_1.png");
           moreCubesColor[i] = 'green';
         }
       }  
