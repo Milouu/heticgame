@@ -98,12 +98,14 @@ $(document).ready(function(){
   //Masque les éléments non voulu dans le menu
   ball.css('display','none');
   wires.css('display','none');
-
+  scoreDisplay.css('display','none');
+  halfBotCube.css
   //Lancement du jeu au clic 
   playButton.click(function(){
     $('#menu').css('display','none');
     ball.css('display','block');
     wires.css('display','block');
+    scoreDisplay.css('display','block');
 
     //Lancement du jeu
     init(); 
