@@ -9,6 +9,8 @@ $(document).ready(function(){
       gameWidth = 960,
       gameHeight = 500,
       speed = 40,
+      scoreDisplay = $("#score"),
+      score = 0,
 
       // Deplacement balle  
       movements = [54,189,339],
@@ -66,6 +68,7 @@ $(document).ready(function(){
 
     setInterval(
       function(){
+        scoreDisplay.html(score);
         generateCubes();
         moveTopCube();
         moveMidCube();
@@ -77,7 +80,7 @@ $(document).ready(function(){
     );
   }
 
-  //Démarre la BO
+  //Démarre la BO (laisser en commentaire pendant le code)
   playSound(boSound);
 
   
@@ -134,6 +137,7 @@ $(document).ready(function(){
   function moveTopCube(){
     posTopX = posTopX - dirTopX;
     topCube.css("left", posTopX);
+    score += (dirTopX/10);
 
     if(posTopX < -115){
       posTopX = 940;
@@ -235,8 +239,10 @@ $(document).ready(function(){
         dirBotX = 0;
         posTopX --;
         console.log("Game Over");
+        console.log("Score :" + score);
       } else if(ballPos == posTopX && ballColor == cubesColor[0]){
         console.log("Good");
+        score +=100;
         playSound(goodCubeSound);
         generateNewBall();
       }
@@ -254,8 +260,10 @@ $(document).ready(function(){
         dirBotX = 0;
         posMidX --;
         console.log("Game Over");
+        console.log("Score :" + score);
       } else if(ballPos == posMidX && ballColor == cubesColor[1]){
         console.log("Good");
+        score +=100;
         playSound(goodCubeSound);
         generateNewBall();
       } 
@@ -268,8 +276,10 @@ $(document).ready(function(){
         dirBotX = 0;
         posBotX --;
         console.log("Game Over");
+        console.log("Score :" + score);
       } else if(ballPos == posBotX && ballColor == cubesColor[2]){
         console.log("Good");
+        score +=100;
         playSound(goodCubeSound);
         generateNewBall();
       }
@@ -294,6 +304,7 @@ $(document).ready(function(){
       sound.get(0).play();
   }
   
+    //Fonction stoppant un son
   function stopSound(sound){
     sound.get(0).pause();
   }
