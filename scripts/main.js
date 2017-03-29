@@ -79,9 +79,7 @@ $(document).ready(function(){
       ],
 
       //Generation couleurs
-      //
       colors = ['orange', 'blue', 'green'],
-      randomColor = colors[Math.floor(Math.random()*3)],
 
       //Sounds
       boSound = $("#boSound"),
@@ -115,8 +113,7 @@ $(document).ready(function(){
           scoreDisplay.html(score);
           moveCubes();
           generateCubes();
-     /*     generateMoreCubes();
-          collision();
+     /*   collision();
           moreCollision(); */
         }
         ,
@@ -182,22 +179,18 @@ $(document).ready(function(){
 
     //Renvoie un tableau de 3 couleurs aléatoires
     function generateColorTab(){
-      return [colors[Math.floor(Math.random()*3)], colors[Math.floor(Math.random()*3)], colors[Math.floor(Math.random()*3)]];
-    }
-    
-    function correctColors(colorTab){
-      if((colorTab[0]==colorTab[1] && colorTab[1] == colorTab[2]) || (colorTab[0] != ballColor && colorTab[1] != ballColor && colorTab[2] != ballColor)){
-        return false;
-      } else{
-        return true;
-      }
+      do{ 
+        
+       var colorTab = [colors[Math.floor(Math.random()*3)], colors[Math.floor(Math.random()*3)], colors[Math.floor(Math.random()*3)]];
+        
+      }while((colorTab[0]==colorTab[1] && colorTab[1] == colorTab[2]) || (colorTab[0] != ballColor && colorTab[1] != ballColor && colorTab[2] != ballColor));
+      
+      return colorTab;
     }
     
     
     function generateCubes(){
-      do{ 
-        var colorTab = generateColorTab();
-      }while(!correctColors(colorTab));
+      var colorTab = generateColorTab();   
       
       if(cubes[0].posX == 940){ 
         $.each(cubes, function(i, item){
