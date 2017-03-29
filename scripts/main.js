@@ -4,7 +4,7 @@ $(document).ready(function(){
   // General
   var ball = $("#ball"),
       ballPos = parseInt(ball.css("left")),
-      ballColor = ball.data("color"), //surveiller crash
+      ballColor = ball.data("color"), 
       game = $("#game"),
       gameWidth = 960,
       gameHeight = 500,
@@ -49,7 +49,12 @@ $(document).ready(function(){
       topCubeColor = topCube.data("color"),
       midCubeColor = midCube.data("color"),
       botCubeColor = botCube.data("color"),
-      cubesColor = [topCubeColor, midCubeColor, botCubeColor];
+      cubesColor = [topCubeColor, midCubeColor, botCubeColor],
+  
+      //Sons
+      boSound = $("#boSound"),
+      goodCubeSound = $("#goodCubeSound"),
+      gameOverSound = $("#gameOverSound");
 
   //Lancement du jeu
   init(); 
@@ -72,8 +77,11 @@ $(document).ready(function(){
     );
   }
 
-  // Fonctions de déroulement du background (lag si mis dans le init)
+  //Démarre la BO
+  playSound(boSound);
 
+  
+  // Fonctions de déroulement du background (lag si mis dans le init)
   bgFarMovement();
   bgMidMovement();
   bgFrontMovement();
@@ -220,12 +228,16 @@ $(document).ready(function(){
   function collision(){
     if(movCount == 0){
       if(ballPos == posTopX && ballColor != cubesColor[0]){
+        stopSound(boSound);
+        playSound(gameOverSound);
         dirTopX = 0;
         dirMidX = 0;
         dirBotX = 0;
+        posTopX --;
         console.log("Game Over");
       } else if(ballPos == posTopX && ballColor == cubesColor[0]){
         console.log("Good");
+        playSound(goodCubeSound);
         generateNewBall();
       }
     } else if(movCount == 1){
@@ -235,22 +247,30 @@ $(document).ready(function(){
       //console.log($("#midCube").data("color"));
 
       if(ballPos == posMidX && ballColor != cubesColor[1]){
+        stopSound(boSound);
+        playSound(gameOverSound);
         dirTopX = 0;
         dirMidX = 0;
         dirBotX = 0;
+        posMidX --;
         console.log("Game Over");
       } else if(ballPos == posMidX && ballColor == cubesColor[1]){
         console.log("Good");
+        playSound(goodCubeSound);
         generateNewBall();
       } 
     }else if(movCount == 2){
       if(ballPos == posBotX && ballColor != cubesColor[2]){
+        stopSound(boSound);
+        playSound(gameOverSound);
         dirTopX = 0;
         dirMidX = 0;
         dirBotX = 0;
+        posBotX --;
         console.log("Game Over");
       } else if(ballPos == posBotX && ballColor == cubesColor[2]){
         console.log("Good");
+        playSound(goodCubeSound);
         generateNewBall();
       }
     }
@@ -267,6 +287,15 @@ $(document).ready(function(){
     } else if(ballColor == 'green'){
       ball.attr("src","images/green_ball.svg");
     }
+  }
+  
+    //Fonction générant un son
+  function playSound(sound){
+      sound.get(0).play();
+  }
+  
+  function stopSound(sound){
+    sound.get(0).pause();
   }
 
 });  
