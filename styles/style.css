@@ -97,7 +97,7 @@
 .wire{
   position:absolute;
   left: 0;
-  width: 1040px; /* surveiller crash*/
+  width: 1040px; 
 }
 
 #wire1{
