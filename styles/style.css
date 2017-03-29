@@ -22,7 +22,7 @@
   left:300px;
 }
 
-.image{
+.cube{
   width:100px;
   height:100px;
   margin:15px /*auto*/;
@@ -68,7 +68,7 @@
 
 *********************/
 
-#orange{
+#topCube{
   margin-top:30px;
   position:absolute;
   top:0;
@@ -76,14 +76,14 @@
   margin-top:31px;
 }
 
-#bleu{
+#midCube{
   margin-bottom:85px;
   position:absolute;
   top:150px;
   left:940px;
 }
 
-#vert{
+#botCube{
   position:absolute;
   top:300px;
   left:940px;
@@ -91,7 +91,7 @@
 
 /*********************
 
-        FIL
+        FILS
 
 *********************/
 
