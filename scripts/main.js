@@ -99,7 +99,7 @@ $(document).ready(function(){
   ball.css('display','none');
   wires.css('display','none');
   scoreDisplay.css('display','none');
-  halfBotCube.css
+  
   //Lancement du jeu au clic 
   playButton.click(function(){
     $('#menu').css('display','none');
