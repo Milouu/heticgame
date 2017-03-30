@@ -40,7 +40,7 @@ $(document).ready(function(){
       },
 
         speed = {
-          game : 40,
+          game : 23,
           bg : 1,
           cube : 10
         },
@@ -364,7 +364,7 @@ $(document).ready(function(){
         
         gameLost = false;
         score.count = 0;
-        speed.game = 40;
+        speed.game = 23;
           
         init();
       }); 
