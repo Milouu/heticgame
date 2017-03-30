@@ -8,6 +8,7 @@
   width:960px;
   height:500px;
   margin:0 auto;
+  margin-top:50px;
   border:3px solid black;
   position:relative;
   overflow:hidden;
@@ -306,15 +307,23 @@ container section
 
 
 body {
+<<<<<<< Updated upstream
     font-family: "Pixeled";
+=======
+    font-family: pixeled;
+    margin:0;
+    padding:0;
+>>>>>>> Stashed changes
 }
 
 .accueil {
     text-align: center;
     background-color: black;
     width: 100%;
-    margin-top: -20px;
-    margin-bottom: 0px;
+    
+}
+.accueil ul{
+  margin:0;
 }
 
 .accueil ul li {
@@ -451,7 +460,7 @@ Image Jeu / contenu
 .how {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 60px;
+    margin-top: 50px;
     background: black;
     color: white;
     padding-top: 20px;
@@ -470,7 +479,7 @@ Image Jeu / contenu
 }
 
 .cubeClass {
-    height: 1200px;
+    height: 1305px;
     background: url('../images/background-contain.png');
     width: 91%;
     margin: 0 auto;
@@ -505,7 +514,7 @@ FOOTER
     background: url('../images/footer.png');
     height: 220px;
     width: 100%;
-    bottom: -230px;
+    margin-top:50px;
     font-size: 7px;
     text-align: center;
 }
@@ -603,7 +612,7 @@ Page two ( Join Us );
 MEDIA QUERIES 
 ********/
 
-@media screen and (min-width:780px) and (max-width:1900px) {
+@media screen and (min-width:780px) and (max-width:5120px) {
     .accueil {
         display: block;
     }
