@@ -40,7 +40,7 @@
 
 @font-face {
   font-family: "Pixeled";
-  src: url("fonts/Pixeled.ttf");
+  src: url('fonts/Pixeled.ttf');
 }
 
 @font-face {
@@ -307,7 +307,6 @@ container section
 
 
 body {
-
     font-family: "Pixeled";
     margin:0;
     padding:0;
@@ -477,7 +476,7 @@ Image Jeu / contenu
 }
 
 .cubeClass {
-    height: 1305px;
+    height: 1120px;
     background: url('../images/background-contain.png');
     width: 91%;
     margin: 0 auto;
@@ -497,10 +496,12 @@ Image Jeu / contenu
     padding-left: 50px;
     display: inline-block;
     color: white;
+    vertical-align: middle;
 }
 
 .differentCube img {
     width: 5.5vw;
+    vertical-align: middle;
 }
 
 
@@ -610,7 +611,7 @@ Page two ( Join Us );
 MEDIA QUERIES 
 ********/
 
-@media screen and (min-width:780px) and (max-width:5120px) {
+@media screen and (min-width:1030px) and (max-width:5120px) {
     .accueil {
         display: block;
     }
@@ -639,7 +640,18 @@ MEDIA QUERIES
     .thinBorder2 {
     top: 172px;
     }
+    
+    .differentCube img {
+    width: 3.5vw;
+    vertical-align: middle;
+}
 
+}
+@media screen and (min-width:2000px) and (max-width:4000px){
+  .differentCube img {
+    width: 1.8vw;
+    vertical-align: middle;
+}
 }
 
 @media screen and (min-width:780px) and (max-width:1030px) {
