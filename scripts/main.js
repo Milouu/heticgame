@@ -178,12 +178,12 @@ $(document).ready(function(){
         cubes[i].halfDiv.attr("src","images/" + initColorTab[i] + "_cube_1.png");
         cubes[i].color = initColorTab[i];
       }
-      
+      playSound(boSound);
       increasedSpeed(speed.game);
     }
     
     
-    playSound(boSound);
+    
     
     
     function increasedSpeed(speedBoost){
@@ -321,6 +321,7 @@ $(document).ready(function(){
     //argument : sound -> sound to stop / no return
     function stopSound(sound){
       sound.get(0).pause();
+      sound.get(0).load();
     }
     
     var finalScore = $('.gameOver .finalScore');
