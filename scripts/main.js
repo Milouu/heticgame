@@ -17,7 +17,7 @@ $(document).ready(function(){
           height : 500
         },
         
-        gameOver = false,
+        gameLost = false,
 
       speed = {
         game : 20,
@@ -37,37 +37,6 @@ $(document).ready(function(){
         div : $("#score"),
         count : 0
       },
-
-      cubes = [
-        {
-          div : $("#topCube"),
-          halfDiv : $("#halfTopCube"),
-          posX : 940,
-          posY : 0,
-          wirePos : 0,
-          row : 1,
-          color : 'orange'
-        },
-
-        {
-          div : $("#midCube"),
-          halfDiv : $("#halfMidCube"),
-          posX : 940,
-          posY : 150,
-          wirePos : 1, 
-          row : 1,
-          color : 'blue'
-        },
-
-        {
-          div : $("#botCube"),
-          halfDiv : $("#halfBotCube"),
-          posX : 940,
-          posY : 300,
-          wirePos : 2, 
-          row : 1,
-          color : 'green'
-        },
 
         speed = {
           game : 40,
@@ -246,12 +215,12 @@ $(document).ready(function(){
     $(document).keydown(function(key){
       var press = key.which || key.keyCode;
       if(press == 38 || press == 90){
-        if(ball.wirePos>0 && gameOver==false){
+        if(ball.wirePos>0 && gameLost==false){
           ball.wirePos --;
         }
         ball.div.css("top", movements[ball.wirePos]);  
       } else if(press == 40 || press == 83){
-        if(ball.wirePos<2 && gameOver==false){
+        if(ball.wirePos<2 && gameLost==false){
           ball.wirePos ++;
         }
         ball.div.css("top", movements[ball.wirePos]);
@@ -310,7 +279,7 @@ $(document).ready(function(){
             stopSound(boSound);
             playSound(gameOverSound);
             item.posX --;
-            gameOver = true;
+            gameLost = true;
             gameOver();
           }
         }
@@ -346,7 +315,6 @@ $(document).ready(function(){
     }
 
 
-    //Game over
 
 
     var finalScore = $('.gameOver .finalScore');
@@ -382,6 +350,8 @@ $(document).ready(function(){
        
         ball.wirePos = 1;
         ball.div.css("top", movements[ball.wirePos]);
+        
+        gameLost = false;
         
         init();
       }); 
