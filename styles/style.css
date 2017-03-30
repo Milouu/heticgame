@@ -8,9 +8,11 @@
   width:960px;
   height:500px;
   margin:0 auto;
+  margin-top:50px;
   border:3px solid black;
   position:relative;
   overflow:hidden;
+    
 }
 
 #ball{
@@ -38,7 +40,12 @@
 
 @font-face {
   font-family: "Pixeled";
-  src: url("fonts/Pixeled.ttf");
+  src: url('fonts/Pixeled.ttf');
+}
+
+@font-face {
+    font-family: 'FuturaBook';
+    src: url('fonts/FuturaBook.ttf');
 }
 /*********************
 
@@ -298,20 +305,22 @@
 container section 
 ****************************/
 
-@font-face {
-    font-family: 'pixeled';
-    src: url('../police/Pixeled.ttf');
-}
 
 body {
-    font-family: pixeled;
+    font-family: "Pixeled";
+    margin:0;
+    padding:0;
+
 }
 
 .accueil {
     text-align: center;
     background-color: black;
     width: 100%;
-    margin-top: -20px;
+    
+}
+.accueil ul{
+  margin:0;
 }
 
 .accueil ul li {
@@ -448,7 +457,7 @@ Image Jeu / contenu
 .how {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 60px;
+    margin-top: 50px;
     background: black;
     color: white;
     padding-top: 20px;
@@ -467,7 +476,7 @@ Image Jeu / contenu
 }
 
 .cubeClass {
-    height: 1200px;
+    height: 1120px;
     background: url('../images/background-contain.png');
     width: 91%;
     margin: 0 auto;
@@ -487,10 +496,12 @@ Image Jeu / contenu
     padding-left: 50px;
     display: inline-block;
     color: white;
+    vertical-align: middle;
 }
 
 .differentCube img {
     width: 5.5vw;
+    vertical-align: middle;
 }
 
 
@@ -502,7 +513,7 @@ FOOTER
     background: url('../images/footer.png');
     height: 220px;
     width: 100%;
-    bottom: -230px;
+    margin-top:50px;
     font-size: 7px;
     text-align: center;
 }
@@ -533,6 +544,7 @@ Slider
     height: 100px;
     overflow: hidden;
     margin: 0 auto;
+    font-family: 'FuturaBook';
 }
 
 .slideshow ul {
@@ -587,6 +599,7 @@ Page two ( Join Us );
     position: relative;
     color: white;
     text-align: center;
+    font-family: 'FuturaBook';
 }
 
 .pageTwo h1 {
@@ -598,7 +611,7 @@ Page two ( Join Us );
 MEDIA QUERIES 
 ********/
 
-@media screen and (min-width:780px) and (max-width:1900px) {
+@media screen and (min-width:1030px) and (max-width:5120px) {
     .accueil {
         display: block;
     }
@@ -624,10 +637,21 @@ MEDIA QUERIES
     top: 172px;
     }
 
-.thinBorder2 {
+    .thinBorder2 {
     top: 172px;
+    }
+    
+    .differentCube img {
+    width: 3.5vw;
+    vertical-align: middle;
 }
 
+}
+@media screen and (min-width:2000px) and (max-width:4000px){
+  .differentCube img {
+    width: 1.8vw;
+    vertical-align: middle;
+}
 }
 
 @media screen and (min-width:780px) and (max-width:1030px) {
@@ -662,6 +686,7 @@ MEDIA QUERIES
 @media screen and (min-width:200px) and (max-width:1239px) {
     .accueil {
         display: none;
+        
     }
     .accueilSmall {
         display: block;
@@ -669,6 +694,7 @@ MEDIA QUERIES
     }
     .accueilBurger {
         display: block;
+        
     }
     .logoSmall {
         display: block;
@@ -695,6 +721,10 @@ MEDIA QUERIES
 .thinBorder2 {
     top: 132px;
 }
+    
+    #game{
+        margin-top: 120px;
+    }
    }
 
 @media screen and (min-width:200px) and (max-width:910px) {
@@ -748,12 +778,12 @@ MEDIA QUERIES
     width: 360px;
     top: 30px;
     height: 400px;
-    font-family: pixeled;
+    font-family: 'Pixeled';
     display: none;
     z-index: 200;
     }
 
-.gameOver h4{
+.gameOver h3{
     margin-top: 0px;
     padding-bottom: 20px;
 }

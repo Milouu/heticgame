@@ -10,6 +10,7 @@ $(document).ready(function(){
         
         gameInterval = null,
         bgInterval = null,
+        over = false,
 
         game = {
           div : $("#game"),
@@ -120,6 +121,7 @@ $(document).ready(function(){
         ],
 
         //Sound variables
+        menuSound = $("#menuSound"),
         boSound = $("#boSound"),
         goodCubeSound = $("#goodCubeSound"),
         gameOverSound = $("#gameOverSound");
@@ -151,6 +153,20 @@ $(document).ready(function(){
       );
   }
 
+  playSound(menuSound);
+  
+  //function launching a sound
+    //argument : sound -> sound to launch / no return
+    function playSound(sound){
+      sound.get(0).play();
+    }
+
+    //function stopping a sound
+    //argument : sound -> sound to stop / no return
+    function stopSound(sound){
+      sound.get(0).pause();
+      sound.get(0).load();
+    }
 
   //Launch game on click 
   playButton.click(function(){
@@ -163,6 +179,7 @@ $(document).ready(function(){
     item.halfDiv.css('display','block');
   }));
 
+    stopSound(menuSound);
     init(); 
     //Game Initialisation
     function init(){ 
@@ -177,21 +194,28 @@ $(document).ready(function(){
         cubes[i].halfDiv.attr("src","images/" + initColorTab[i] + "_cube_1.png");
         cubes[i].color = initColorTab[i];
       }
-
-      gameInterval = setInterval(
-        function(){
-          score.div.html(score.count);
-          generateCubes();
-          moveCubes();
-          collision();
-        }
-        ,
-        speed.game
-      );
+      playSound(boSound);
+      increasedSpeed(speed.game);
     }
-
-    //Launching game BO : TO-DO -> loop
-    playSound(boSound);
+    
+    
+    
+    
+    
+    function increasedSpeed(speedBoost){
+      if(gameLost){
+        return;
+      }else{
+        score.div.html(score.count);
+        generateCubes();
+        moveCubes();
+        collision();
+      
+        setTimeout(function(){
+          increasedSpeed(speed.game);
+        }, speedBoost);
+      }  
+    }
 
     //function dealing with cubes'movements
     //no argument / no return
@@ -275,11 +299,11 @@ $(document).ready(function(){
             score.count +=10;
             playSound(goodCubeSound);
             generateNewBall(item);
+            speed.game *= 0.9;
           } else{
             stopSound(boSound);
             playSound(gameOverSound);
             item.posX --;
-            gameLost = true;
             gameOver();
           }
         }
@@ -302,17 +326,7 @@ $(document).ready(function(){
       ball.div.attr("src", "images/" + ball.color + "_ball.svg");
     }
 
-    //function launching a sound
-    //argument : sound -> sound to launch / no return
-    function playSound(sound){
-      sound.get(0).play();
-    }
-
-    //function stopping a sound
-    //argument : sound -> sound to stop / no return
-    function stopSound(sound){
-      sound.get(0).pause();
-    }
+    
     
     var finalScore = $('.gameOver .finalScore');
     var topScore = $('.gameOver .button1');
@@ -320,7 +334,7 @@ $(document).ready(function(){
     function gameOver(){
       $('.gameOver').css('display','block');
       finalScore.html(score.count);
-      clearInterval(gameInterval);
+      gameLost = true;
       clearInterval(bgInterval);
       startAgain();
     }
@@ -349,7 +363,9 @@ $(document).ready(function(){
         ball.div.css("top", movements[ball.wirePos]);
         
         gameLost = false;
-        
+        score.count = 0;
+        speed.game = 40;
+          
         init();
       }); 
     }
