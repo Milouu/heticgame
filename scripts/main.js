@@ -253,8 +253,6 @@ $(document).ready(function(){
             item.posX --;
             console.log("Game Over");
             console.log("Score :" + score);
-            console.log(item.color);
-            console.log(ball.color);
           }
         }
       });
