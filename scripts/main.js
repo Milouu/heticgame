@@ -1,20 +1,26 @@
 $(document).ready(function(){
 
-  //variables  
-  var playButton = $('#playButton'),
-      movements = [54,189,339],
-      colors = ['orange', 'blue', 'green'],
-      bgs = $(".bg"),  
-      wires = $('.wire'),
 
-      game = {
-        div : $("#game"),
-        width : 960,
-        height : 500
-      },
+    //variables  
+    var playButton = $('#playButton'),
+        movements = [54,189,339],
+        colors = ['orange', 'blue', 'green'],
+        bgs = $(".bg"),  
+        wires = $('.wire'),
+        
+        gameInterval = null,
+        bgInterval = null,
+
+        game = {
+          div : $("#game"),
+          width : 960,
+          height : 500
+        },
+        
+        gameLost = false,
 
       speed = {
-        game : 40,
+        game : 20,
         bg : 1,
         cube : 10
       },
@@ -32,104 +38,135 @@ $(document).ready(function(){
         count : 0
       },
 
-      cubes = [
-        {
-          div : $("#topCube"),
-          halfDiv : $("#halfTopCube"),
-          posX : 940,
-          posY : 0,
-          wirePos : 0,
-          row : 1,
+        speed = {
+          game : 40,
+          bg : 1,
+          cube : 10
+        },
+
+        ball = {
+          div : $("#ball"),
+          posX : parseInt($("#ball").css("left")),
+          posY : parseInt($("#ball").css("top")),
+          wirePos : 1,
           color : 'orange'
         },
 
-        {
-          div : $("#midCube"),
-          halfDiv : $("#halfMidCube"),
-          posX : 940,
-          posY : 150,
-          wirePos : 1, 
-          row : 1,
-          color : 'blue'
+        score = {
+          div : $("#score"),
+          count : 0
         },
 
-        {
-          div : $("#botCube"),
-          halfDiv : $("#halfBotCube"),
-          posX : 940,
-          posY : 300,
-          wirePos : 2, 
-          row : 1,
-          color : 'green'
-        },
+        cubes = [
+          {
+            div : $("#topCube"),
+            halfDiv : $("#halfTopCube"),
+            posX : 940,
+            posY : 0,
+            wirePos : 0,
+            row : 1,
+            color : 'orange'
+          },
 
-        {
-          div : $("#topCube2"),
-          halfDiv : $("#halfTopCube2"),
-          posX : 1490,
-          posY : 0,
-          wirePos : 0,
-          row : 2,
-          color : null
-        },
+          {
+            div : $("#midCube"),
+            halfDiv : $("#halfMidCube"),
+            posX : 940,
+            posY : 150,
+            wirePos : 1, 
+            row : 1,
+            color : 'blue'
+          },
 
-        {
-          div : $("#midCube2"),
-          halfDiv : $("#halfMidCube2"),
-          posX : 1490,
-          posY : 150,
-          wirePos : 1,
-          row : 2,
-          color : null
-        },
+          {
+            div : $("#botCube"),
+            halfDiv : $("#halfBotCube"),
+            posX : 940,
+            posY : 300,
+            wirePos : 2, 
+            row : 1,
+            color : 'green'
+          },
 
-        {
-          div : $("#botCube2"),
-          halfDiv : $("#halfBotCube2"),
-          posX : 1490,
-          posY : 300,
-          wirePos : 2,
-          row : 2,
-          color : null
-        }
-      ],
+          {
+            div : $("#topCube2"),
+            halfDiv : $("#halfTopCube2"),
+            posX : 1490,
+            posY : 0,
+            wirePos : 0,
+            row : 2,
+            color : null
+          },
 
-      //Sound variables
-      boSound = $("#boSound"),
-      goodCubeSound = $("#goodCubeSound"),
-      gameOverSound = $("#gameOverSound");
+          {
+            div : $("#midCube2"),
+            halfDiv : $("#halfMidCube2"),
+            posX : 1490,
+            posY : 150,
+            wirePos : 1,
+            row : 2,
+            color : null
+          },
 
+          {
+            div : $("#botCube2"),
+            halfDiv : $("#halfBotCube2"),
+            posX : 1490,
+            posY : 300,
+            wirePos : 2,
+            row : 2,
+            color : null
+          }
+        ],
 
-
+        //Sound variables
+        boSound = $("#boSound"),
+        goodCubeSound = $("#goodCubeSound"),
+        gameOverSound = $("#gameOverSound");
+  
+  
   //Hide unwanted elements in menu
   ball.div.css('display','none');
   wires.css('display','none');
   score.div.css('display','none');
+  $.each(cubes,(function(i,item){
+    item.div.css('display','none');
+    item.halfDiv.css('display','none');
+  }));
 
-  bgMovement(); 
+    bgMovement(); 
   //function dealing with the bakckground movement
-    //no argument / no return
-    function bgMovement(){
-      var x=0;
 
-      setInterval(function(){
+  //no argument / no return
+  function bgMovement(){
+    var x=0;
+    bgInterval = setInterval(
+      function(){
         x -= speed.bg;
         bgs.each(function(){
           $(this).css("background-position", x);
         });
-      }, 14);
-    }
-  
+      }, 
+      14
+      );
+  }
+
+
   //Launch game on click 
   playButton.click(function(){
     $('#menu').css('display','none');
     ball.div.css('display','block');
     wires.css('display','block');
     score.div.css('display','block');
+    $.each(cubes,(function(i,item){
+    item.div.css('display','block');
+    item.halfDiv.css('display','block');
+  }));
 
     init(); 
     //Game Initialisation
     function init(){ 
+      //initVariables();
       game.div.css("width", game.width);
       game.div.css("height", game.height);
       ball.div.css("top", movements[ball.wirePos]);
@@ -141,7 +178,7 @@ $(document).ready(function(){
         cubes[i].color = initColorTab[i];
       }
 
-      setInterval(
+      gameInterval = setInterval(
         function(){
           score.div.html(score.count);
           generateCubes();
@@ -170,7 +207,7 @@ $(document).ready(function(){
       });
     }
 
-
+    
 
 
     //function dealing with the ball deplacement with the press of Arrow Up, Arrow Down, Z or S
@@ -178,12 +215,12 @@ $(document).ready(function(){
     $(document).keydown(function(key){
       var press = key.which || key.keyCode;
       if(press == 38 || press == 90){
-        if(ball.wirePos>0){
+        if(ball.wirePos>0 && gameLost==false){
           ball.wirePos --;
         }
         ball.div.css("top", movements[ball.wirePos]);  
       } else if(press == 40 || press == 83){
-        if(ball.wirePos<2){
+        if(ball.wirePos<2 && gameLost==false){
           ball.wirePos ++;
         }
         ball.div.css("top", movements[ball.wirePos]);
@@ -241,11 +278,9 @@ $(document).ready(function(){
           } else{
             stopSound(boSound);
             playSound(gameOverSound);
-            speed.cube = 0;
-            speed.bg = 0;
             item.posX --;
-            console.log("Game Over");
-            console.log("Score :" + score.count);
+            gameLost = true;
+            gameOver();
           }
         }
       });
@@ -277,6 +312,46 @@ $(document).ready(function(){
     //argument : sound -> sound to stop / no return
     function stopSound(sound){
       sound.get(0).pause();
+    }
+    
+    var finalScore = $('.gameOver .finalScore');
+    var topScore = $('.gameOver .button1');
+
+    function gameOver(){
+      $('.gameOver').css('display','block');
+      finalScore.html(score.count);
+      clearInterval(gameInterval);
+      clearInterval(bgInterval);
+      startAgain();
+    }
+
+
+    function startAgain(){
+      var buttonRetry = $('.button2');
+
+      buttonRetry.on('click',function(){
+        $('.gameOver').css('display','none');
+        buttonRetry.unbind();
+        
+        $.each(cubes,function(i,item){
+          if(item.row == 1){
+            item.posX = 940;
+            item.div.css("left", 940);
+            item.halfDiv.css("left", 940);
+          } else if(item.row == 2){
+            item.posX = 1490;
+            item.div.css("left", 1490);
+            item.halfDiv.css("left", 1490);
+          }       
+        });
+       
+        ball.wirePos = 1;
+        ball.div.css("top", movements[ball.wirePos]);
+        
+        gameLost = false;
+        
+        init();
+      }); 
     }
 
   });  
