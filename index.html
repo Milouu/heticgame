@@ -1,13 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8" />
-    <title>Document</title>
-    <link rel="stylesheet" href="styles/style.css" />
-  </head>
-  <body>
-   <!DOCTYPE html>
-<html lang="fr">
 
 <head>
     <meta charset="utf-8" />
@@ -47,7 +39,7 @@
                 <li class="Jsball_1"><img src="images/blue_ball.svg" alt="blue ball" /></li>
                 <li class="howToPlay"><a href="#how" title="accueil">How to play ?</a></li>
                 <li class="Jsball_2"><img src="images/orange_ball.svg" alt="orange ball" /></li>
-                <li><a href="pages/joinUs.html" title="accueil">Join us</a></li>
+                <li><a href="pages/JoinUs.html" title="accueil">Join us</a></li>
                 <li class="Jsball_3"><img src="images/green_ball.svg" alt="green ball" /></li>
                 <li><a href="#" title="accueil">Challenge your friends</a></li>
             </ul>
@@ -56,61 +48,60 @@
     <section class="row container">
         <div class="large-12 medium-12 small-12 Slider">
             <div class="slideshow large-12 medium-12 small-12">
-            <div class="thinBorder1"></div>
-	            <ul>
-		            <li>Une pure folie</li>
-		            <li>Emouvant et agreable</li>
-		            <li>Ce jeu m'a donne une erection</li>
-		            <li>je ne peux m'en passer</li>
-	            </ul>
-	           <div class="thinBorder2"></div>
+                <div class="thinBorder1"></div>
+                <ul>
+                    <li>Une pure folie, je le conseil</li>
+                    <li>Emouvant, agreable et prenant</li>
+                    <li>Ce jeu m'a donne une erection</li>
+                    <li>je ne peux m'en passer,Jouez !</li>
+                </ul>
+                <div class="thinBorder2"></div>
             </div>
         </div>
-        <div class="jeu large-12 medium-12 small-12">
-   
-    <div id="game">
-     <div id="menu">
-        <h1>CubePlan</h1>
-        <div id="playButton">
-        <p>Play</p>
+        <div class=" columns large-12 medium-12 small-12">
+            <div id="game" class="columns large-12 medium-12 small-12">
+                <div id="menu" class="columns large-12 medium-12 small-12">
+                    <h1>CubePlan</h1>
+                    <div id="playButton">
+                        <p>Play</p>
+                    </div>
+                    <div id="shareButton">
+                        <p>Share</p>
+                    </div>
+                    <div id="joinUsButton">
+                        <p>Join us</p>
+                    </div>
+                </div>
+                <div id="score">0</div>
+                <div id="bg_far" class="bg"></div>
+                <div id="bg_middle" class="bg"></div>
+                <div id="bg_front" class="bg"></div>
+                <img id="wire1" class="wire" src="images/white_rail.svg" alt="wire" />
+                <img id="wire2" class="wire" src="images/white_rail.svg" alt="wire" />
+                <img id="wire3" class="wire" src="images/white_rail.svg" alt="wire" />
+                <img id="ball" src="images/orange_ball.svg" alt="ball" />
+                <img id="halfTopCube" class="halfCube" src="#" alt="Top Cube" />
+                <img id="topCube" class="cube" src="#" alt="Top Cube" />
+                <img id="halfMidCube" class="halfCube" src="#" alt="Middle Cube Cube" />
+                <img id="midCube" class="cube" src="#" alt="Middle Cube" />
+                <img id="halfBotCube" class="halfCube" src="#" alt="Bottom Cube" />
+                <img id="botCube" class="cube" src="#" alt="Bottom Cube" />
+                <img id="halfTopCube2" class="halfCube" src="#" alt="Top Cube2" />
+                <img id="topCube2" class="cube" src="#" alt="Top Cube2" />
+                <img id="halfMidCube2" class="halfCube" src="#" alt="Middle Cube2" />
+                <img id="midCube2" class="cube" src="#" alt="Middle Cube2" />
+                <img id="halfBotCube2" class="halfCube" src="#" alt="Bottom Cube2" />
+                <img id="botCube2" class="cube" src="#" alt="Bottom Cube2" />
+
+                <audio id="boSound" src="sounds/CubePlan_BO.mp3"></audio>
+                <audio id="goodCubeSound" src="sounds/dingGoodCube.mp3"></audio>
+                <audio id="gameOverSound" src="sounds/gameOver.mp3"></audio>
+            </div>
         </div>
-        <div id="shareButton">
-        <p>Share</p>
-        </div>
-        <div id="joinUsButton">
-        <p>Join us</p>
-        </div>
-      </div>
-      <div id="score">0</div>
-      <div id="bg_far" class="bg"></div>
-      <div id="bg_middle" class="bg"></div>
-      <div id="bg_front" class="bg"></div>
-      <img id="wire1" class="wire" src="images/white_rail.svg" alt="wire"  />
-      <img id="wire2" class="wire" src="images/white_rail.svg" alt="wire"  />
-      <img id="wire3" class="wire" src="images/white_rail.svg" alt="wire"  />
-      <img id="ball" src="images/orange_ball.svg" alt="ball" />
-      <img id="halfTopCube" class="halfCube" src="#" alt="Top Cube" />
-      <img id="topCube" class="cube" src="#" alt="Top Cube" />
-      <img id="halfMidCube" class="halfCube" src="#" alt="Middle Cube Cube" />
-      <img id="midCube" class="cube" src="#" alt="Middle Cube" />
-      <img id="halfBotCube" class="halfCube" src="#" alt="Bottom Cube" />
-      <img id="botCube" class="cube" src="#" alt="Bottom Cube" />
-      <img id="halfTopCube2" class="halfCube" src="#" alt="Top Cube2" />
-      <img id="topCube2" class="cube" src="#" alt="Top Cube2" />
-      <img id="halfMidCube2" class="halfCube" src="#" alt="Middle Cube2" />
-      <img id="midCube2" class="cube" src="#" alt="Middle Cube2" />
-      <img id="halfBotCube2" class="halfCube" src="#" alt="Bottom Cube2" />
-      <img id="botCube2" class="cube" src="#" alt="Bottom Cube2" />
-      
-      <audio id="boSound" src="sounds/CubePlan_BO.mp3"></audio>
-      <audio id="goodCubeSound" src="sounds/dingGoodCube.mp3"></audio>
-      <audio id="gameOverSound" src="sounds/gameOver.mp3"></audio>
-    </div>
-        </div>
-         <div class="how  large-12 medium-12 small-12" id="how">
+        <div class="how  large-12 medium-12 small-12" id="how">
             <p> How to play ? </p>
         </div>
-        <div id="#how1"class="cubeClass is-active1">
+        <div id="#how1" class="cubeClass is-active1">
             <div>
                 <div class="differentCube"><img class="center" src="images/orange_cube.png" alt="cube orange" /></div>
                 <p> Orange box : you're orange ? Hit orange cube ! </p>
@@ -121,7 +112,7 @@
             </div>
             <div>
                 <div class="differentCube"><img class="center" src="images/green_cube.png" alt="cube orange" /></div>
-                <p>  Green box : you're green ? Hit green cube !</p>
+                <p> Green box : you're green ? Hit green cube !</p>
             </div>
             <div>
                 <div class="differentCube"><img class="center" src="images/green_cube_highspeed.png" alt="cube orange" /></div>
@@ -147,21 +138,25 @@
                 <div class="differentCube"><img class="center" src="images/blue_cube_reverse.png" alt="cube orange" /></div>
                 <p> Reverse Cube : The game direction has shifted !</p>
             </div>
-            
+
         </div>
-        
-        
-   
+
+
+
     </section>
-    
+
     <div id="footer">
-          <div>
-           <img class="logoFooter" src="images/facebook.png" alt="logo facebook"/>
-           <img  class="logoFooter" src="images/twitter.png" alt="logo twitter"/>
-           <p> Copyright-Hetic P2021</p>
-          </div>
+        <div>
+            <img class="logoFooter" src="images/facebook.png" alt="logo facebook" />
+            <img class="logoFooter" src="images/twitter.png" alt="logo twitter" />
+            <p> Copyright-Hetic P2021</p>
         </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="scripts/main.js"></script>
-  </body>
+</body>
+
 </html>
