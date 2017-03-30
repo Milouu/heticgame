@@ -11,6 +11,7 @@
   border:3px solid black;
   position:relative;
   overflow:hidden;
+    
 }
 
 #ball{
@@ -300,7 +301,12 @@ container section
 
 @font-face {
     font-family: 'pixeled';
-    src: url('../police/Pixeled.ttf');
+    src: url('../fonts/Pixeled.ttf');
+}
+
+@font-face {
+    font-family: 'FuturaBook';
+    src: url('../fonts/FuturaBook.ttf');
 }
 
 body {
@@ -312,6 +318,7 @@ body {
     background-color: black;
     width: 100%;
     margin-top: -20px;
+    margin-bottom: 0px;
 }
 
 .accueil ul li {
@@ -533,6 +540,7 @@ Slider
     height: 100px;
     overflow: hidden;
     margin: 0 auto;
+    font-family: 'FuturaBook';
 }
 
 .slideshow ul {
@@ -587,6 +595,7 @@ Page two ( Join Us );
     position: relative;
     color: white;
     text-align: center;
+    font-family: 'FuturaBook';
 }
 
 .pageTwo h1 {
@@ -624,9 +633,9 @@ MEDIA QUERIES
     top: 172px;
     }
 
-.thinBorder2 {
+    .thinBorder2 {
     top: 172px;
-}
+    }
 
 }
 
@@ -662,6 +671,7 @@ MEDIA QUERIES
 @media screen and (min-width:200px) and (max-width:1239px) {
     .accueil {
         display: none;
+        
     }
     .accueilSmall {
         display: block;
@@ -669,6 +679,7 @@ MEDIA QUERIES
     }
     .accueilBurger {
         display: block;
+        
     }
     .logoSmall {
         display: block;
@@ -695,6 +706,10 @@ MEDIA QUERIES
 .thinBorder2 {
     top: 132px;
 }
+    
+    #game{
+        margin-top: 120px;
+    }
    }
 
 @media screen and (min-width:200px) and (max-width:910px) {
