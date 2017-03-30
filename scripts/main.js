@@ -2,13 +2,26 @@ $(document).ready(function(){
 
   //Variables  
   // General
-  var ball = $("#ball"),
-      ballPos = parseInt(ball.css("left")),
-      ballColor = ball.data("color"), 
-      game = $("#game"),
-      gameWidth = 960,
-      gameHeight = 500,
-      speed = 40,
+  var ball = {
+        div : $("#ball"),
+        posX : parseInt($("#ball").css("left")),
+        posY : parseInt($("#ball").css("top")),
+        wirePos : 1,
+        color : 'orange'
+      },
+  
+      game = {
+        div : $("#game"),
+        width : 960,
+        height : 500
+      },
+  
+      speed = {
+        game : 40,
+        bg : 1,
+        cube : 10
+      },
+    
       scoreDisplay = $("#score"),
       score = 0,
 
@@ -17,23 +30,22 @@ $(document).ready(function(){
 
       // Deplacement balle  
       movements = [54,189,339],
-      movCount = 1,
 
       // Background
       bgs = $(".bg"),
-      bgSpeed = 1,
       
       // Wires  
       wires = $('.wire'),
 
-      // Cubes
-      cubeSpeed = 10,     
+      // Cubes     
       cubes = [
         {
           div : $("#topCube"),
           halfDiv : $("#halfTopCube"),
           posX : 940,
           posY : 0,
+          wirePos : 0,
+          row : 1,
           color : 'orange'
         },
         
@@ -42,6 +54,8 @@ $(document).ready(function(){
           halfDiv : $("#halfMidCube"),
           posX : 940,
           posY : 150,
+          wirePos : 1, 
+          row : 1,
           color : 'blue'
         },
         
@@ -50,6 +64,8 @@ $(document).ready(function(){
           halfDiv : $("#halfBotCube"),
           posX : 940,
           posY : 300,
+          wirePos : 2, 
+          row : 1,
           color : 'green'
         },
         
@@ -58,6 +74,8 @@ $(document).ready(function(){
           halfDiv : $("#halfTopCube2"),
           posX : 1490,
           posY : 0,
+          wirePos : 0,
+          row : 2,
           color : null
         },
         
@@ -66,6 +84,8 @@ $(document).ready(function(){
           halfDiv : $("#halfMidCube2"),
           posX : 1490,
           posY : 150,
+          wirePos : 1,
+          row : 2,
           color : null
         },
         
@@ -74,6 +94,8 @@ $(document).ready(function(){
           halfDiv : $("#halfBotCube2"),
           posX : 1490,
           posY : 300,
+          wirePos : 2,
+          row : 2,
           color : null
         }
       ],
@@ -89,14 +111,14 @@ $(document).ready(function(){
   
   
   //Masque les éléments non voulu dans le menu
-  ball.css('display','none');
+  ball.div.css('display','none');
   wires.css('display','none');
   scoreDisplay.css('display','none');
   
   //Lancement du jeu au clic 
   playButton.click(function(){
     $('#menu').css('display','none');
-    ball.css('display','block');
+    ball.div.css('display','block');
     wires.css('display','block');
     scoreDisplay.css('display','block');
 
@@ -104,20 +126,26 @@ $(document).ready(function(){
     init(); 
     //Fonction d'initialisation du jeu
     function init(){ 
-      game.css("width", gameWidth);
-      game.css("height", gameHeight);
-      ball.css("top", movements[movCount]);
+      game.div.css("width", game.width);
+      game.div.css("height", game.height);
+      ball.div.css("top", movements[ball.wirePos]);
+      
+      var initColorTab = generateColorTab();
+      for(var i=0; i<3; i++){
+        cubes[i].div.attr("src","images/" + initColorTab[i] + "_cube_0.png");
+        cubes[i].halfDiv.attr("src","images/" + initColorTab[i] + "_cube_1.png");
+        cubes[i].color = initColorTab[i];
+      }
 
       setInterval(
         function(){
           scoreDisplay.html(score);
-          moveCubes();
           generateCubes();
-     /*   collision();
-          moreCollision(); */
+          moveCubes();
+          collision();
         }
         ,
-        speed
+        speed.game
       );
     }
 
@@ -132,7 +160,7 @@ $(document).ready(function(){
       var x=0;
 
       setInterval(function(){
-        x -= bgSpeed;
+        x -= speed.bg;
         bgs.each(function(){
           $(this).css("background-position", x);
         });
@@ -142,7 +170,7 @@ $(document).ready(function(){
     //Fonction de déplacement des cubes 
     function moveCubes(){
       $.each(cubes, function(i, item){
-        item.posX -= cubeSpeed;
+        item.posX -= speed.cube;
         item.div.css("left", item.posX);
         item.halfDiv.css("left", item.posX);
         
@@ -158,17 +186,16 @@ $(document).ready(function(){
 
     $(document).keydown(function(key){
       var press = key.which || key.keyCode;
-      var top = parseInt(ball.css("top"));
       if(press == 38 || press == 90){
-        if(movCount>0){
-          movCount --;
+        if(ball.wirePos>0){
+          ball.wirePos --;
         }
-        ball.css("top", movements[movCount]);  
+        ball.div.css("top", movements[ball.wirePos]);  
       } else if(press == 40 || press == 83){
-        if(movCount<2){
-          movCount ++;
+        if(ball.wirePos<2){
+          ball.wirePos ++;
         }
-        ball.css("top", movements[movCount]);
+        ball.div.css("top", movements[ball.wirePos]);
       }
     });
 
@@ -183,7 +210,7 @@ $(document).ready(function(){
         
        var colorTab = [colors[Math.floor(Math.random()*3)], colors[Math.floor(Math.random()*3)], colors[Math.floor(Math.random()*3)]];
         
-      }while((colorTab[0]==colorTab[1] && colorTab[1] == colorTab[2]) || (colorTab[0] != ballColor && colorTab[1] != ballColor && colorTab[2] != ballColor));
+      }while((colorTab[0]==colorTab[1] && colorTab[1] == colorTab[2]) || (colorTab[0] != ball.color && colorTab[1] != ball.color && colorTab[2] != ball.color));
       
       return colorTab;
     }
@@ -194,7 +221,7 @@ $(document).ready(function(){
       
       if(cubes[0].posX == 940){ 
         $.each(cubes, function(i, item){
-          if(item.posX == cubes[0].posX){
+          if(item.row == 1){
             item.div.attr("src","images/" + colorTab[i] + "_cube_0.png");
             item.halfDiv.attr("src","images/" + colorTab[i] + "_cube_1.png");
             item.color = colorTab[i];
@@ -202,7 +229,7 @@ $(document).ready(function(){
         });
       } else if(cubes[3].posX == 940){
         $.each(cubes, function(i, item){
-          if(item.posX == cubes[3].posX){
+          if(item.row == 2){
             item.div.attr("src","images/" + colorTab[i-3] + "_cube_0.png");
             item.halfDiv.attr("src","images/" + colorTab[i-3] + "_cube_1.png");
             item.color = colorTab[i-3];
@@ -211,129 +238,40 @@ $(document).ready(function(){
       }                        
      }  
 
-
-    //Fonction gérant les collisions : vérifie sur quel fil se trouve la balle et compare sa position et sa couleur avec celles du bloc
     function collision(){
-      if(movCount == 0){
-        if(ballPos == posTopX && ballColor != cubesColor[0]){
-          stopSound(boSound);
-          playSound(gameOverSound);
-          cubeSpeed = 0;
-          bgSpeed = 0;
-          posTopX --;
-          console.log("Game Over");
-          console.log("Score :" + score);
-        } else if(ballPos == posTopX && ballColor == cubesColor[0]){
-          console.log("Good");
-          score +=100;
-          playSound(goodCubeSound);
-          generateNewBall();
+      $.each(cubes, function(i, item){
+        if(item.wirePos == ball.wirePos && item.posX == ball.posX){
+          if(item.color == ball.color){
+            score +=100;
+            playSound(goodCubeSound);
+            generateNewBall(item);
+          } else{
+            stopSound(boSound);
+            playSound(gameOverSound);
+            speed.cube = 0;
+            speed.bg = 0;
+            item.posX --;
+            console.log("Game Over");
+            console.log("Score :" + score);
+            console.log(item.color);
+            console.log(ball.color);
+          }
         }
-      } else if(movCount == 1){
-        if(ballPos == posMidX && ballColor != cubesColor[1]){
-          stopSound(boSound);
-          playSound(gameOverSound);
-          cubeSpeed = 0;
-          bgSpeed = 0;
-          posMidX --;
-          console.log("Game Over");
-          console.log("Score :" + score);
-        } else if(ballPos == posMidX && ballColor == cubesColor[1]){
-          console.log("Good");
-          score +=100;
-          playSound(goodCubeSound);
-          generateNewBall();
-        } 
-      }else if(movCount == 2){
-        if(ballPos == posBotX && ballColor != cubesColor[2]){
-          stopSound(boSound);
-          playSound(gameOverSound);
-          cubeSpeed = 0;
-          bgSpeed = 0;
-          posBotX --;
-          console.log("Game Over");
-          console.log("Score :" + score);
-        } else if(ballPos == posBotX && ballColor == cubesColor[2]){
-          console.log("Good");
-          score +=100;
-          playSound(goodCubeSound);
-          generateNewBall();
-        }
-      }
-    }
-
-
-    function moreCollision(){
-      if(movCount == 0){
-        if(ballPos == posTopX2 && ballColor != moreCubesColor[0]){
-          stopSound(boSound);
-          playSound(gameOverSound);
-          cubeSpeed = 0;
-          bgSpeed = 0;
-          posTopX2 --;
-          console.log("Game Over2");
-          console.log("Score :" + score);
-        } else if(ballPos == posTopX2 && ballColor == moreCubesColor[0]){
-          console.log("Good");
-          score +=100;
-          playSound(goodCubeSound);
-          generateNewBall();
-        }
-      }else if(movCount == 1){
-        if(ballPos == posMidX2 && ballColor != moreCubesColor[1]){
-          stopSound(boSound);
-          playSound(gameOverSound);
-          cubeSpeed = 0;
-          bgSpeed = 0;
-          posMidX2 --;
-          console.log("Game Over2");
-          console.log("Score :" + score);
-        } else if(ballPos == posMidX2 && ballColor == moreCubesColor[1]){
-          console.log("Good");
-          score +=100;
-          playSound(goodCubeSound);
-          generateNewBall();
-        } 
-      }else if(movCount == 2){
-        if(ballPos == posBotX2 && ballColor != moreCubesColor[2]){
-          stopSound(boSound);
-          playSound(gameOverSound);
-          cubeSpeed = 0;
-          bgSpeed = 0;
-          posBotX2 --;
-          console.log("Game Over2");
-          console.log("Score :" + score);
-        } else if(ballPos == posBotX2 && ballColor == moreCubesColor[2]){
-          console.log("Good");
-          score +=100;
-          playSound(goodCubeSound);
-          generateNewBall();
-        }
-      }
-    }
-
-
-    //Fonction pour générer une nouvelle balle après être passé dans un cube de bonne couleur
-    function generateNewBall(){
-      ballColor = colors[Math.floor(Math.random()*3)];
-
-      if(ballPos == posTopX){
+      });
+    } 
+    
+    function generateNewBall(cube){   
+      if(cube.row == 1){
         do{
-          ballColor = colors[Math.floor(Math.random()*3)];
-        }while(ballColor != moreCubesColor[0] && ballColor != moreCubesColor[1] && ballColor != moreCubesColor[2]);
-      } else if(ballPos == posTopX2){
+          ball.color = colors[Math.floor(Math.random()*3)];
+        }while(ball.color != cubes[3].color && ball.color != cubes[4].color && ball.color != cubes[5].color);   
+      }else if(cube.row == 2){
         do{
-          ballColor = colors[Math.floor(Math.random()*3)];
-        }while(ballColor != cubesColor[0] && ballColor != cubesColor[1] && ballColor != cubesColor[2]);
+          ball.color = colors[Math.floor(Math.random()*3)];
+        }while(ball.color != cubes[0].color && ball.color != cubes[1].color && ball.color != cubes[2].color); 
       }
-
-      if(ballColor == 'orange'){
-        ball.attr("src","images/orange_ball.svg");
-      } else if(ballColor == 'blue'){
-        ball.attr("src","images/blue_ball.svg");
-      } else if(ballColor == 'green'){
-        ball.attr("src","images/green_ball.svg");
-      }
+      
+      ball.div.attr("src", "images/" + ball.color + "_ball.svg");
     }
 
     //Fonction générant un son
