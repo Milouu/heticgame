@@ -180,9 +180,12 @@ $(document).ready(function(){
         cubes[i].color = initColorTab[i];
       }
       
-      playSound(boSound);
       increasedSpeed(speed.game);
     }
+    
+    
+    playSound(boSound);
+    
     
     function increasedSpeed(speedBoost){
       if(over){
@@ -319,7 +322,7 @@ $(document).ready(function(){
     //function stopping a sound
     //argument : sound -> sound to stop / no return
     function stopSound(sound){
-      sound.get(0).pause();
+      sound.get(0).stop();
     }
     
     var finalScore = $('.gameOver .finalScore');
@@ -359,6 +362,7 @@ $(document).ready(function(){
         gameLost = false;
         score = 0;
         
+        playSound(boSound);
         init();
       }); 
     }
