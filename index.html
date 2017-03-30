@@ -6,6 +6,68 @@
     <link rel="stylesheet" href="styles/style.css" />
   </head>
   <body>
+   <!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Page</title>
+    <link rel="stylessheet" href="styles/foundation.min.css" />
+    <link rel="stylessheet" href="styles/app.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/hamburgers.min.css" />
+</head>
+
+<body>
+    <header class="row">
+        <div class="large-12 medium-12 small-12 accueil">
+            <ul>
+                <li class="logo"><img src="images/CubePlan%20.png" alt="Logo plan cube" /></li>
+                <li class="Jsball1"><img src="images/blue_ball.svg" alt="blue ball" /></li>
+                <li class="hover1"><a href="#how" title="accueil">How to play ?</a></li>
+                <li class="Jsball2"><img src="images/orange_ball.svg" alt="orange ball" /></li>
+                <li class="hover2"><a href="pages/joinUs.html" title="accueil">Join us</a></li>
+                <li class="Jsball3"><img src="images/green_ball.svg" alt="green ball" /></li>
+                <li class="hover3"><a href="#" title="accueil">Challenge your friends</a></li>
+            </ul>
+        </div>
+        <div class="backSmall">
+            <div class="right accueilBurger">
+                <button class="hamburger hamburger--elastic" type="button"> 
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+            </div>
+            <div class="logoSmall"><img src="images/CubePlan%20.png" alt="Logo plan cube" /></div>
+        </div>
+        <div class="accueilSmall">
+            <ul>
+
+                <li class="Jsball_1"><img src="images/blue_ball.svg" alt="blue ball" /></li>
+                <li class="howToPlay"><a href="#how" title="accueil">How to play ?</a></li>
+                <li class="Jsball_2"><img src="images/orange_ball.svg" alt="orange ball" /></li>
+                <li><a href="pages/joinUs.html" title="accueil">Join us</a></li>
+                <li class="Jsball_3"><img src="images/green_ball.svg" alt="green ball" /></li>
+                <li><a href="#" title="accueil">Challenge your friends</a></li>
+            </ul>
+        </div>
+    </header>
+    <section class="row container">
+        <div class="large-12 medium-12 small-12 Slider">
+            <div class="slideshow large-12 medium-12 small-12">
+            <div class="thinBorder1"></div>
+	            <ul>
+		            <li>Une pure folie</li>
+		            <li>Emouvant et agreable</li>
+		            <li>Ce jeu m'a donne une erection</li>
+		            <li>je ne peux m'en passer</li>
+	            </ul>
+	           <div class="thinBorder2"></div>
+            </div>
+        </div>
+        <div class="jeu large-12 medium-12 small-12">
+   
     <div id="game">
      <div id="menu">
         <h1>CubePlan</h1>
@@ -44,6 +106,61 @@
       <audio id="goodCubeSound" src="sounds/dingGoodCube.mp3"></audio>
       <audio id="gameOverSound" src="sounds/gameOver.mp3"></audio>
     </div>
+        </div>
+         <div class="how  large-12 medium-12 small-12" id="how">
+            <p> How to play ? </p>
+        </div>
+        <div id="#how1"class="cubeClass is-active1">
+            <div>
+                <div class="differentCube"><img class="center" src="images/orange_cube.png" alt="cube orange" /></div>
+                <p> Orange box : you're orange ? Hit orange cube ! </p>
+            </div>
+            <div>
+                <div class="differentCube"><img class="center" src="images/blue_cube.png" alt="cube orange" /></div>
+                <p> Blue box : you're blue ? Hit blue cube !</p>
+            </div>
+            <div>
+                <div class="differentCube"><img class="center" src="images/green_cube.png" alt="cube orange" /></div>
+                <p>  Green box : you're green ? Hit green cube !</p>
+            </div>
+            <div>
+                <div class="differentCube"><img class="center" src="images/green_cube_highspeed.png" alt="cube orange" /></div>
+                <p> Highspeed : you're speed is increased </p>
+            </div>
+            <div>
+                <div class="differentCube"><img class="center" src="images/green_cube_spike.png" alt="cube orange" /></div>
+                <p> Spike Cube : If you touch it, you die</p>
+            </div>
+            <div>
+                <div class="differentCube"><img class="center" src="images/orange_cube_interrogation.png" alt="cube orange" /></div>
+                <p>Random Cube : Generate a random rule, get lucky !</p>
+            </div>
+            <div>
+                <div class="differentCube"><img class="center" src="images/orange_cube_switch.png" alt="cube orange" /></div>
+                <p> Switch Cube : The rules are reversed, warning !</p>
+            </div>
+            <div>
+                <div class="differentCube"><img class="center" src="images/blue_cube_counterclock.png" alt="cube orange" /></div>
+                <p>Counter Clock : You have more time to make a choice !</p>
+            </div>
+            <div>
+                <div class="differentCube"><img class="center" src="images/blue_cube_reverse.png" alt="cube orange" /></div>
+                <p> Reverse Cube : The game direction has shifted !</p>
+            </div>
+            
+        </div>
+        
+        
+   
+    </section>
+    
+    <div id="footer">
+          <div>
+           <img class="logoFooter" src="images/facebook.png" alt="logo facebook"/>
+           <img  class="logoFooter" src="images/twitter.png" alt="logo twitter"/>
+           <p> Copyright-Hetic P2021</p>
+          </div>
+        </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="scripts/main.js"></script>
   </body>

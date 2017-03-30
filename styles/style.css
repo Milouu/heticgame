@@ -281,3 +281,453 @@
 #wire3{
   top: 364px;
 }
+
+
+
+/*********************************
+
+
+
+
+
+
+SITE CSS
+
+
+
+
+
+**************************************/
+
+/**************************
+container section 
+****************************/
+
+@font-face {
+    font-family: 'pixeled';
+    src: url('../police/Pixeled.ttf');
+}
+
+body {
+    font-family: pixeled;
+}
+
+.accueil {
+    text-align: center;
+    background-color: black;
+    width: 100%;
+}
+
+.accueil ul li {
+    display: inline-block;
+    list-style: none;
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+
+.accueil ul li a {
+    color: white;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.accueilSmall {
+    position: fixed;
+    left: -350px;
+    width: 350px;
+    top: 70px;
+    padding: 0;
+    margin: 0;
+    z-index: 50;
+    transition: all linear 1s;
+    background-color: black;
+    border-radius: 20px;
+}
+
+.accueilSmall ul li a {
+    position: fixed;
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+}
+
+.accueilSmall ul {
+    padding-bottom: 50px;
+}
+
+.accueilSmall ul li {
+    list-style: none;
+    color: black;
+    padding: 40px;
+}
+
+.accueilBurger {
+    display: block;
+    position: fixed;
+    right: 20px;
+    top: 14px;
+    z-index: 100;
+}
+
+.backSmall {
+    background-color: #6b6b79;
+    height: 80px;
+    position: fixed;
+    z-index: 40;
+    width: 100%;
+    top: 0;
+}
+
+
+/********************
+Animation Accueil 
+************************/
+
+.Jsball1 {
+    width: 2vw;
+    visibility: hidden;
+}
+
+.Jsball2 {
+    width: 2vw;
+    visibility: hidden;
+}
+
+.Jsball3 {
+    width: 2vw;
+    visibility: hidden;
+}
+
+.Jsball_1 {
+    width: 1vw;
+    position: fixed;
+    top: 96px;
+}
+
+.Jsball_2 {
+    width: 1vw;
+    position: fixed;
+    top: 177px;
+}
+
+.Jsball_3 {
+    width: 1vw;
+    position: fixed;
+    top: 256px;
+}
+
+
+/**************
+logo
+******************/
+
+.logo {
+    margin-right: 50px;
+}
+
+.logoSmall {
+    position: fixed;
+    left: 50px;
+    top: 20px;
+    z-index: 50;
+}
+
+
+/**************************
+Image Jeu / contenu 
+****************************/
+
+.jeu {
+    text-align: center;
+    margin-top: 0px;
+}
+
+.jeu img {
+    width: 91%;
+}
+
+.how {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    background: black;
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 91%;
+    cursor: pointer;
+    transition: all linear 1s;
+}
+
+.how:hover {
+    background: #6b6b79;
+}
+
+.how p {
+    text-align: center;
+}
+
+.cubeClass {
+    height: 1200px;
+    background: url('../images/background-contain.png');
+    width: 91%;
+    margin: 0 auto;
+}
+
+.is-active1 {
+    display: none;
+}
+
+.differentCube {
+    display: inline-block;
+    margin-left: 50px;
+    margin-top: 30px;
+}
+
+.differentCube+p {
+    padding-left: 50px;
+    display: inline-block;
+    color: white;
+}
+
+.differentCube img {
+    width: 5.5vw;
+}
+
+
+/**************************
+FOOTER
+***************************/
+
+#footer {
+    background: url('../images/footer.png');
+    height: 220px;
+    width: 100%;
+    bottom: -230px;
+    font-size: 7px;
+    text-align: center;
+}
+
+.container {
+    position: relative;
+}
+
+.logofooter {
+    display: inline-block;
+}
+
+#footer div {
+    padding-top: 160px;
+}
+
+#footer div p {
+    color: white;
+}
+
+.footerMarg {
+    position: absolute;
+    z-index: 3;
+}
+
+
+/******************
+Footer page two
+*********************/
+
+
+/*******************
+Slider
+*********************/
+
+.slideshow {
+    width: 400px;
+    height: 100px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.slideshow ul {
+    /* 4 images donc 4 x 100% */
+    width: 400%;
+    height: 200px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.slideshow li {
+    display: inline-block;
+}
+
+.thinBorder1 {
+    position: absolute;
+    height: 4px;
+    width: 20vw;
+    ;
+    top: 15px;
+    background: #6b6b79;
+    left: 0px;
+}
+
+.thinBorder2 {
+    position: absolute;
+    height: 4px;
+    width: 20vw;
+    top: 15px;
+    background: #6b6b79;
+    right: 0px;
+}
+
+
+/********
+Home page big screen
+*******/
+
+.hidden {
+    visibility: visible;
+}
+
+
+/************************
+Page two ( Join Us );
+****************************/
+
+.pageTwo {
+    background: url('../images/background-contain.png');
+    height: 800px;
+    margin-top: 80px;
+    position: relative;
+    color: white;
+    text-align: center;
+}
+
+.pageTwo h1 {
+    padding-top: 50px;
+}
+
+
+/***************
+MEDIA QUERIES 
+********/
+
+@media screen and (min-width:780px) and (max-width:1900px) {
+    .accueil {
+        display: block;
+    }
+    .slideshow {
+        margin-top: 60px;
+    }
+    .accueilSmall {
+        display: none;
+    }
+    .accueilBurger {
+        display: none;
+    }
+    .logoSmall {
+        display: none;
+    }
+    .backSmall {
+        display: none;
+    }
+    .pageTwo {
+        margin-top: -19px;
+    }
+}
+
+@media screen and (min-width:780px) and (max-width:1030px) {
+    .accueil {
+        display: block;
+    }
+    .accueil ul li a {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+    .accueil ul li {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+    .accueilSmall {
+        display: none;
+    }
+    .accueilBurger {
+        display: none;
+    }
+    .logoSmall {
+        display: none;
+    }
+    .backSmall {
+        !important display: none;
+    }
+    .cubeClass {
+        font-size: 11px;
+    }
+}
+
+@media screen and (min-width:200px) and (max-width:1239px) {
+    .accueil {
+        display: none;
+    }
+    .accueilSmall {
+        display: block;
+        font-size: 12px;
+    }
+    .accueilBurger {
+        display: block;
+    }
+    .logoSmall {
+        display: block;
+    }
+    .backSmall {
+        display: block;
+    }
+    .container {
+        margin-top: 120px;
+    }
+    .cubeClass {
+        height: 1000px;
+    }
+    .slideshow {
+        margin-top: 60px;
+    }
+    .pageTwo {
+        margin-top: 80px;
+    }
+}
+
+@media screen and (min-width:200px) and (max-width:910px) {
+    .jeu img {
+        width: 91%;
+    }
+    .differentCube+p {
+        font-size: 11px;
+    }
+    .cubeClass {
+        height: 900px;
+    }
+}
+
+@media screen and (min-width:200px) and (max-width:570px) {
+    .how p {
+        font-size: 12px;
+    }
+    .cubeClass {
+        height: 600px;
+    }
+}
+
+@media screen and (min-width:200px) and (max-width:740px) {
+    .cubeClass div p {
+        font-size: 8px;
+    }
+    .cubeClass {
+        height: 800px;
+    }
+}
+
+
+
+
