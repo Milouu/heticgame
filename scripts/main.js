@@ -10,6 +10,7 @@ $(document).ready(function(){
         
         gameInterval = null,
         bgInterval = null,
+        over = false,
 
         game = {
           div : $("#game"),
@@ -170,6 +171,7 @@ $(document).ready(function(){
       game.div.css("width", game.width);
       game.div.css("height", game.height);
       ball.div.css("top", movements[ball.wirePos]);
+      over = false;
 
       var initColorTab = generateColorTab();
       for(var i=0; i<3; i++){
@@ -178,16 +180,23 @@ $(document).ready(function(){
         cubes[i].color = initColorTab[i];
       }
 
-      gameInterval = setInterval(
-        function(){
-          score.div.html(score.count);
-          generateCubes();
-          moveCubes();
-          collision();
-        }
-        ,
-        speed.game
-      );
+      increasedSpeed(speed.game);
+    }
+    
+    function increasedSpeed(speedBoost){
+      if(over){
+        return;
+      } else{
+        score.div.html(score.count);
+        generateCubes();
+        moveCubes();
+        collision();
+        console.log(new Date().getTime() + " : " + speedBoost );
+      
+        setTimeout(function(){
+          increasedSpeed(speed.game);
+        }, speedBoost);
+      }  
     }
 
     //Launching game BO : TO-DO -> loop
@@ -275,6 +284,7 @@ $(document).ready(function(){
             score.count +=10;
             playSound(goodCubeSound);
             generateNewBall(item);
+            speed.game *= 0.9;
           } else{
             stopSound(boSound);
             playSound(gameOverSound);
@@ -320,7 +330,7 @@ $(document).ready(function(){
     function gameOver(){
       $('.gameOver').css('display','block');
       finalScore.html(score.count);
-      clearInterval(gameInterval);
+      over = true;
       clearInterval(bgInterval);
       startAgain();
     }
