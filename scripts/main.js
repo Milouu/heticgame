@@ -171,7 +171,6 @@ $(document).ready(function(){
       game.div.css("width", game.width);
       game.div.css("height", game.height);
       ball.div.css("top", movements[ball.wirePos]);
-      over = false;
 
       var initColorTab = generateColorTab();
       for(var i=0; i<3; i++){
@@ -188,9 +187,9 @@ $(document).ready(function(){
     
     
     function increasedSpeed(speedBoost){
-      if(over){
+      if(gameLost){
         return;
-      } else{
+      }else{
         score.div.html(score.count);
         generateCubes();
         moveCubes();
@@ -290,7 +289,6 @@ $(document).ready(function(){
             stopSound(boSound);
             playSound(gameOverSound);
             item.posX --;
-            gameLost = true;
             gameOver();
           }
         }
@@ -322,7 +320,7 @@ $(document).ready(function(){
     //function stopping a sound
     //argument : sound -> sound to stop / no return
     function stopSound(sound){
-      sound.get(0).stop();
+      sound.get(0).pause();
     }
     
     var finalScore = $('.gameOver .finalScore');
@@ -331,7 +329,7 @@ $(document).ready(function(){
     function gameOver(){
       $('.gameOver').css('display','block');
       finalScore.html(score.count);
-      over = true;
+      gameLost = true;
       clearInterval(bgInterval);
       startAgain();
     }
@@ -360,9 +358,9 @@ $(document).ready(function(){
         ball.div.css("top", movements[ball.wirePos]);
         
         gameLost = false;
-        score = 0;
-        
-        
+        score.count = 0;
+        speed.game = 40;
+          
         init();
       }); 
     }
