@@ -106,13 +106,26 @@ $(document).ready(function(){
   wires.css('display','none');
   score.div.css('display','none');
 
+  bgMovement(); 
+  //function dealing with the bakckground movement
+    //no argument / no return
+    function bgMovement(){
+      var x=0;
+
+      setInterval(function(){
+        x -= speed.bg;
+        bgs.each(function(){
+          $(this).css("background-position", x);
+        });
+      }, 14);
+    }
+  
   //Launch game on click 
   playButton.click(function(){
     $('#menu').css('display','none');
     ball.div.css('display','block');
     wires.css('display','block');
     score.div.css('display','block');
-
 
     init(); 
     //Game Initialisation
@@ -136,26 +149,12 @@ $(document).ready(function(){
           collision();
         }
         ,
-        increaseSpeed(speed.game)
+        speed.game
       );
     }
 
     //Launching game BO : TO-DO -> loop
     playSound(boSound);
-
-    bgMovement();
-    //function dealing with the bakckground movement
-    //no argument / no return
-    function bgMovement(){
-      var x=0;
-
-      setInterval(function(){
-        x -= speed.bg;
-        bgs.each(function(){
-          $(this).css("background-position", x);
-        });
-      }, 14);
-    }
 
     //function dealing with cubes'movements
     //no argument / no return

@@ -156,11 +156,11 @@
 
 #score{
   position : absolute;
-  top: 0;
-  left: 2px;
+  top: -4px;
+  left: 5px;
   font-family: "Pixeled", sans-serif;
-  font-weight: 200;
-  font-size: 30px;
+  font-weight: 400;
+  font-size: 25px;
   color: #ffffff;
   z-index: 99;
 }
