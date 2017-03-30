@@ -64,10 +64,12 @@
   height: 60px;
   border-radius: 5px;
   margin-top: 15px;
+  cursor: pointer;
 
 }
 #playButton{
   background-color: #6bb9f0;
+ 
   
 }
 
@@ -78,6 +80,7 @@
 
 #shareButton{
   background-color: #f4b350;
+
   
 }
 
@@ -104,6 +107,7 @@
 }
 #menu h1{
   font-size: 50px;
+  cursor:default;
   
 }
 
@@ -131,7 +135,6 @@
   background-image: url("../images/background_0.png");
   background-size: cover;
   background-position: bottom;
-  
 }
 
 #bg_middle{
