@@ -1,106 +1,108 @@
 $(document).ready(function(){
 
-  //variables  
-  var playButton = $('#playButton'),
-      movements = [54,189,339],
-      colors = ['orange', 'blue', 'green'],
-      bgs = $(".bg"),  
-      wires = $('.wire'),
+    //variables  
+    var playButton = $('#playButton'),
+        movements = [54,189,339],
+        colors = ['orange', 'blue', 'green'],
+        bgs = $(".bg"),  
+        wires = $('.wire'),
+        
+        gameInterval = null,
+        bgInterval = null,
 
-      game = {
-        div : $("#game"),
-        width : 960,
-        height : 500
-      },
+        game = {
+          div : $("#game"),
+          width : 960,
+          height : 500
+        },
 
-      speed = {
-        game : 40,
-        bg : 1,
-        cube : 10
-      },
+        speed = {
+          game : 40,
+          bg : 1,
+          cube : 10
+        },
 
-      ball = {
-        div : $("#ball"),
-        posX : parseInt($("#ball").css("left")),
-        posY : parseInt($("#ball").css("top")),
-        wirePos : 1,
-        color : 'orange'
-      },
-
-      score = {
-        div : $("#score"),
-        count : 0
-      },
-
-      cubes = [
-        {
-          div : $("#topCube"),
-          halfDiv : $("#halfTopCube"),
-          posX : 940,
-          posY : 0,
-          wirePos : 0,
-          row : 1,
+        ball = {
+          div : $("#ball"),
+          posX : parseInt($("#ball").css("left")),
+          posY : parseInt($("#ball").css("top")),
+          wirePos : 1,
           color : 'orange'
         },
 
-        {
-          div : $("#midCube"),
-          halfDiv : $("#halfMidCube"),
-          posX : 940,
-          posY : 150,
-          wirePos : 1, 
-          row : 1,
-          color : 'blue'
+        score = {
+          div : $("#score"),
+          count : 0
         },
 
-        {
-          div : $("#botCube"),
-          halfDiv : $("#halfBotCube"),
-          posX : 940,
-          posY : 300,
-          wirePos : 2, 
-          row : 1,
-          color : 'green'
-        },
+        cubes = [
+          {
+            div : $("#topCube"),
+            halfDiv : $("#halfTopCube"),
+            posX : 940,
+            posY : 0,
+            wirePos : 0,
+            row : 1,
+            color : 'orange'
+          },
 
-        {
-          div : $("#topCube2"),
-          halfDiv : $("#halfTopCube2"),
-          posX : 1490,
-          posY : 0,
-          wirePos : 0,
-          row : 2,
-          color : null
-        },
+          {
+            div : $("#midCube"),
+            halfDiv : $("#halfMidCube"),
+            posX : 940,
+            posY : 150,
+            wirePos : 1, 
+            row : 1,
+            color : 'blue'
+          },
 
-        {
-          div : $("#midCube2"),
-          halfDiv : $("#halfMidCube2"),
-          posX : 1490,
-          posY : 150,
-          wirePos : 1,
-          row : 2,
-          color : null
-        },
+          {
+            div : $("#botCube"),
+            halfDiv : $("#halfBotCube"),
+            posX : 940,
+            posY : 300,
+            wirePos : 2, 
+            row : 1,
+            color : 'green'
+          },
 
-        {
-          div : $("#botCube2"),
-          halfDiv : $("#halfBotCube2"),
-          posX : 1490,
-          posY : 300,
-          wirePos : 2,
-          row : 2,
-          color : null
-        }
-      ],
+          {
+            div : $("#topCube2"),
+            halfDiv : $("#halfTopCube2"),
+            posX : 1490,
+            posY : 0,
+            wirePos : 0,
+            row : 2,
+            color : null
+          },
 
-      //Sound variables
-      boSound = $("#boSound"),
-      goodCubeSound = $("#goodCubeSound"),
-      gameOverSound = $("#gameOverSound");
+          {
+            div : $("#midCube2"),
+            halfDiv : $("#halfMidCube2"),
+            posX : 1490,
+            posY : 150,
+            wirePos : 1,
+            row : 2,
+            color : null
+          },
 
+          {
+            div : $("#botCube2"),
+            halfDiv : $("#halfBotCube2"),
+            posX : 1490,
+            posY : 300,
+            wirePos : 2,
+            row : 2,
+            color : null
+          }
+        ],
 
-
+        //Sound variables
+        boSound = $("#boSound"),
+        goodCubeSound = $("#goodCubeSound"),
+        gameOverSound = $("#gameOverSound");
+  
+  
   //Hide unwanted elements in menu
   ball.div.css('display','none');
   wires.css('display','none');
@@ -108,18 +110,21 @@ $(document).ready(function(){
 
   bgMovement(); 
   //function dealing with the bakckground movement
-    //no argument / no return
-    function bgMovement(){
-      var x=0;
+  //no argument / no return
+  function bgMovement(){
+    var x=0;
 
-      setInterval(function(){
+    bgInterval = setInterval(
+      function(){
         x -= speed.bg;
         bgs.each(function(){
           $(this).css("background-position", x);
         });
-      }, 14);
-    }
-  
+      }, 
+      14
+      );
+  }
+
   //Launch game on click 
   playButton.click(function(){
     $('#menu').css('display','none');
@@ -130,6 +135,7 @@ $(document).ready(function(){
     init(); 
     //Game Initialisation
     function init(){ 
+      //initVariables();
       game.div.css("width", game.width);
       game.div.css("height", game.height);
       ball.div.css("top", movements[ball.wirePos]);
@@ -141,7 +147,7 @@ $(document).ready(function(){
         cubes[i].color = initColorTab[i];
       }
 
-      setInterval(
+      gameInterval = setInterval(
         function(){
           score.div.html(score.count);
           generateCubes();
@@ -244,6 +250,7 @@ $(document).ready(function(){
             speed.cube = 0;
             speed.bg = 0;
             item.posX --;
+            gameOver();
             console.log("Game Over");
             console.log("Score :" + score.count);
           }
@@ -279,5 +286,33 @@ $(document).ready(function(){
       sound.get(0).pause();
     }
 
-  });  
+
+    //Game over
+
+
+    var finalScore = $('.gameOver .finalScore');
+    var topScore = $('.gameOver .button1');
+
+    function gameOver(){
+      $('.gameOver').css('display','block');
+      finalScore.html(score.count);
+
+      startAgain();
+    }
+
+
+    function startAgain(){
+      var buttonRetry = $('.button2');
+
+      buttonRetry.on('click',function(){
+        $('.gameOver').css('display','none');
+
+        clearInterval(gameInterval);
+        clearInterval(bgInterval);
+        init();
+        console.log(gameInterval);
+      }); 
+    }
+    
+  });      
 });
