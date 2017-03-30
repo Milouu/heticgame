@@ -114,6 +114,7 @@ $(document).ready(function(){
   function bgMovement(){
     var x=0;
 
+    bgInterval = setInterval(
       function(){
         x -= speed.bg;
         bgs.each(function(){
