@@ -362,7 +362,7 @@ $(document).ready(function(){
         gameLost = false;
         score = 0;
         
-        playSound(boSound);
+        
         init();
       }); 
     }
