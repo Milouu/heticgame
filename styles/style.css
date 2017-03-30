@@ -41,6 +41,11 @@
   font-family: "Pixeled";
   src: url("fonts/Pixeled.ttf");
 }
+
+@font-face {
+    font-family: 'FuturaBook';
+    src: url('fonts/FuturaBook.ttf');
+}
 /*********************
 
          MENU
@@ -299,18 +304,9 @@
 container section 
 ****************************/
 
-@font-face {
-    font-family: 'pixeled';
-    src: url('../fonts/Pixeled.ttf');
-}
-
-@font-face {
-    font-family: 'FuturaBook';
-    src: url('../fonts/FuturaBook.ttf');
-}
 
 body {
-    font-family: pixeled;
+    font-family: "Pixeled";
 }
 
 .accueil {
@@ -763,7 +759,7 @@ MEDIA QUERIES
     width: 360px;
     top: 30px;
     height: 400px;
-    font-family: pixeled;
+    font-family: 'Pixeled';
     display: none;
     z-index: 200;
     }
