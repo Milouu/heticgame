@@ -2,13 +2,11 @@ $(document).ready(function(){
 
   //Variables  
   // General
-  var ball = {
-        div : $("#ball"),
-        posX : parseInt($("#ball").css("left")),
-        posY : parseInt($("#ball").css("top")),
-        wirePos : 1,
-        color : 'orange'
-      },
+  var playButton = $('#playButton'),
+      movements = [54,189,339],
+      colors = ['orange', 'blue', 'green'],
+      bgs = $(".bg"),  
+      wires = $('.wire'),
   
       game = {
         div : $("#game"),
@@ -21,23 +19,20 @@ $(document).ready(function(){
         bg : 1,
         cube : 10
       },
-    
-      scoreDisplay = $("#score"),
-      score = 0,
-
-      // Menu
-      playButton = $('#playButton'),
-
-      // Deplacement balle  
-      movements = [54,189,339],
-
-      // Background
-      bgs = $(".bg"),
       
-      // Wires  
-      wires = $('.wire'),
-
-      // Cubes     
+      ball = {
+        div : $("#ball"),
+        posX : parseInt($("#ball").css("left")),
+        posY : parseInt($("#ball").css("top")),
+        wirePos : 1,
+        color : 'orange'
+      },
+      
+      score = {
+        div : $("#score"),
+        count : 0
+      },
+      
       cubes = [
         {
           div : $("#topCube"),
@@ -100,9 +95,6 @@ $(document).ready(function(){
         }
       ],
 
-      //Generation couleurs
-      colors = ['orange', 'blue', 'green'],
-
       //Sounds
       boSound = $("#boSound"),
       goodCubeSound = $("#goodCubeSound"),
@@ -113,14 +105,14 @@ $(document).ready(function(){
   //Masque les éléments non voulu dans le menu
   ball.div.css('display','none');
   wires.css('display','none');
-  scoreDisplay.css('display','none');
+  score.div.css('display','none');
   
   //Lancement du jeu au clic 
   playButton.click(function(){
     $('#menu').css('display','none');
     ball.div.css('display','block');
     wires.css('display','block');
-    scoreDisplay.css('display','block');
+    score.div.css('display','block');
 
     //Lancement du jeu
     init(); 
@@ -139,7 +131,7 @@ $(document).ready(function(){
 
       setInterval(
         function(){
-          scoreDisplay.html(score);
+          score.div.html(score.count);
           generateCubes();
           moveCubes();
           collision();
@@ -242,7 +234,7 @@ $(document).ready(function(){
       $.each(cubes, function(i, item){
         if(item.wirePos == ball.wirePos && item.posX == ball.posX){
           if(item.color == ball.color){
-            score +=100;
+            score.count +=100;
             playSound(goodCubeSound);
             generateNewBall(item);
           } else{
@@ -252,7 +244,7 @@ $(document).ready(function(){
             speed.bg = 0;
             item.posX --;
             console.log("Game Over");
-            console.log("Score :" + score);
+            console.log("Score :" + score.count);
           }
         }
       });
