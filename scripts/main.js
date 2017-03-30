@@ -247,16 +247,8 @@ $(document).ready(function(){
           } else{
             stopSound(boSound);
             playSound(gameOverSound);
-            //speed.cube = 0;
-            //speed.bg = 0;
             item.posX --;
             gameOver();
-            console.log("Game Over");
-            console.log("Score :" + score.count);
-            console.log(ball.posX);
-            console.log(ball.div.css("left"));
-            console.log(item.posX);
-            console.log(item.div.css("left"));
           }
         }
       });
