@@ -114,7 +114,7 @@ $(document).ready(function(){
   function bgMovement(){
     var x=0;
 
-    bgInterval = setInterval(
+    var bgInterval2 = setInterval(
       function(){
         x -= speed.bg;
         bgs.each(function(){
@@ -247,12 +247,16 @@ $(document).ready(function(){
           } else{
             stopSound(boSound);
             playSound(gameOverSound);
-            speed.cube = 0;
-            speed.bg = 0;
+            //speed.cube = 0;
+            //speed.bg = 0;
             item.posX --;
             gameOver();
             console.log("Game Over");
             console.log("Score :" + score.count);
+            console.log(ball.posX);
+            console.log(ball.div.css("left"));
+            console.log(item.posX);
+            console.log(item.div.css("left"));
           }
         }
       });
@@ -296,7 +300,8 @@ $(document).ready(function(){
     function gameOver(){
       $('.gameOver').css('display','block');
       finalScore.html(score.count);
-
+      clearInterval(gameInterval);
+      clearInterval(bgInterval);
       startAgain();
     }
 
@@ -306,11 +311,24 @@ $(document).ready(function(){
 
       buttonRetry.on('click',function(){
         $('.gameOver').css('display','none');
-
-        clearInterval(gameInterval);
-        clearInterval(bgInterval);
+        buttonRetry.unbind();
+        
+        $.each(cubes,function(i,item){
+          if(item.row == 1){
+            item.posX = 940;
+            item.div.css("left", 940);
+            item.halfDiv.css("left", 940);
+          } else if(item.row == 2){
+            item.posX = 1490;
+            item.div.css("left", 1490);
+            item.halfDiv.css("left", 1490);
+          }       
+        });
+       
+        ball.wirePos = 1;
+        ball.div.css("top", movements[ball.wirePos]);
+        
         init();
-        console.log(gameInterval);
       }); 
     }
     
