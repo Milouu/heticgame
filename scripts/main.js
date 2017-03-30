@@ -179,7 +179,8 @@ $(document).ready(function(){
         cubes[i].halfDiv.attr("src","images/" + initColorTab[i] + "_cube_1.png");
         cubes[i].color = initColorTab[i];
       }
-
+      
+      playSound(boSound);
       increasedSpeed(speed.game);
     }
     
@@ -198,9 +199,6 @@ $(document).ready(function(){
         }, speedBoost);
       }  
     }
-
-    //Launching game BO : TO-DO -> loop
-    playSound(boSound);
 
     //function dealing with cubes'movements
     //no argument / no return
@@ -359,6 +357,7 @@ $(document).ready(function(){
         ball.div.css("top", movements[ball.wirePos]);
         
         gameLost = false;
+        score = 0;
         
         init();
       }); 
