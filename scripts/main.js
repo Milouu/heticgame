@@ -121,6 +121,7 @@ $(document).ready(function(){
         ],
 
         //Sound variables
+        menuSound = $("#menuSound"),
         boSound = $("#boSound"),
         goodCubeSound = $("#goodCubeSound"),
         gameOverSound = $("#gameOverSound");
@@ -152,6 +153,20 @@ $(document).ready(function(){
       );
   }
 
+  playSound(menuSound);
+  
+  //function launching a sound
+    //argument : sound -> sound to launch / no return
+    function playSound(sound){
+      sound.get(0).play();
+    }
+
+    //function stopping a sound
+    //argument : sound -> sound to stop / no return
+    function stopSound(sound){
+      sound.get(0).pause();
+      sound.get(0).load();
+    }
 
   //Launch game on click 
   playButton.click(function(){
@@ -164,6 +179,7 @@ $(document).ready(function(){
     item.halfDiv.css('display','block');
   }));
 
+    stopSound(menuSound);
     init(); 
     //Game Initialisation
     function init(){ 
@@ -194,7 +210,6 @@ $(document).ready(function(){
         generateCubes();
         moveCubes();
         collision();
-        console.log(new Date().getTime() + " : " + speedBoost );
       
         setTimeout(function(){
           increasedSpeed(speed.game);
@@ -311,18 +326,7 @@ $(document).ready(function(){
       ball.div.attr("src", "images/" + ball.color + "_ball.svg");
     }
 
-    //function launching a sound
-    //argument : sound -> sound to launch / no return
-    function playSound(sound){
-      sound.get(0).play();
-    }
-
-    //function stopping a sound
-    //argument : sound -> sound to stop / no return
-    function stopSound(sound){
-      sound.get(0).pause();
-      sound.get(0).load();
-    }
+    
     
     var finalScore = $('.gameOver .finalScore');
     var topScore = $('.gameOver .button1');
