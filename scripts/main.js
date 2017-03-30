@@ -1,7 +1,6 @@
 $(document).ready(function(){
 
-  //Variables  
-  // General
+  //variables  
   var playButton = $('#playButton'),
       movements = [54,189,339],
       colors = ['orange', 'blue', 'green'],
@@ -95,28 +94,28 @@ $(document).ready(function(){
         }
       ],
 
-      //Sounds
+      //Sound variables
       boSound = $("#boSound"),
       goodCubeSound = $("#goodCubeSound"),
       gameOverSound = $("#gameOverSound");
 
   
   
-  //Masque les éléments non voulu dans le menu
+  //Hide unwanted elements in menu
   ball.div.css('display','none');
   wires.css('display','none');
   score.div.css('display','none');
   
-  //Lancement du jeu au clic 
+  //Launch game on click 
   playButton.click(function(){
     $('#menu').css('display','none');
     ball.div.css('display','block');
     wires.css('display','block');
     score.div.css('display','block');
 
-    //Lancement du jeu
+    
     init(); 
-    //Fonction d'initialisation du jeu
+    //Game Initialisation
     function init(){ 
       game.div.css("width", game.width);
       game.div.css("height", game.height);
@@ -141,13 +140,12 @@ $(document).ready(function(){
       );
     }
 
-    //Démarre la BO (laisser en commentaire pendant le code) : TO-DO -> Boucler
+    //Launching game BO : TO-DO -> loop
     playSound(boSound);
-
-
-    // Fonctions de déroulement du background (lag si mis dans le init)
+    
     bgMovement();
-
+    //function dealing with the bakckground movement
+    //no argument / no return
     function bgMovement(){
       var x=0;
 
@@ -159,7 +157,8 @@ $(document).ready(function(){
       }, 14);
     }
 
-    //Fonction de déplacement des cubes 
+    //function dealing with cubes'movements
+    //no argument / no return
     function moveCubes(){
       $.each(cubes, function(i, item){
         item.posX -= speed.cube;
@@ -174,8 +173,9 @@ $(document).ready(function(){
     
     
 
-    //Fonction de déplacement de la balle à l'appui sur les touches
-
+    
+    //function dealing with the ball deplacement with the press of Arrow Up, Arrow Down, Z or S
+    //argument : key -> the key pressed by the user / no return
     $(document).keydown(function(key){
       var press = key.which || key.keyCode;
       if(press == 38 || press == 90){
@@ -194,9 +194,8 @@ $(document).ready(function(){
 
 
 
-    // Fonctions servant à la génération aléatoire des cubes
-
-    //Renvoie un tableau de 3 couleurs aléatoires
+    //function generating an array of 3 colors with a security to ensure that the 3 colors are not the same and that at least one is the same color as the ball
+    //no argument / returns the array generated
     function generateColorTab(){
       do{ 
         
@@ -207,7 +206,8 @@ $(document).ready(function(){
       return colorTab;
     }
     
-    
+    //function generating cubes 
+    //no argument / no return
     function generateCubes(){
       var colorTab = generateColorTab();   
       
@@ -230,6 +230,8 @@ $(document).ready(function(){
       }                        
      }  
 
+    //function dealing with collisions between the ball and the cubes
+    //no argument / no return
     function collision(){
       $.each(cubes, function(i, item){
         if(item.wirePos == ball.wirePos && item.posX == ball.posX){
@@ -250,6 +252,8 @@ $(document).ready(function(){
       });
     } 
     
+    //function generating a new ball after a collision with a correct cube
+    //argument : cube -> the object of the cube that collided with the ball / no return
     function generateNewBall(cube){   
       if(cube.row == 1){
         do{
@@ -264,12 +268,14 @@ $(document).ready(function(){
       ball.div.attr("src", "images/" + ball.color + "_ball.svg");
     }
 
-    //Fonction générant un son
+    //function launching a sound
+    //argument : sound -> sound to launch / no return
     function playSound(sound){
       sound.get(0).play();
     }
 
-    //Fonction stoppant un son
+    //function stopping a sound
+    //argument : sound -> sound to stop / no return
     function stopSound(sound){
       sound.get(0).pause();
     }
