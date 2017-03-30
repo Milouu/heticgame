@@ -4,17 +4,38 @@ $(document).ready(function(){
   var playButton = $('#playButton'),
       movements = [54,189,339],
       colors = ['orange', 'blue', 'green'],
-      bgs = $(".bg"),  
+      bgs = $(".bg"),
+      bgMovs = [1,1.3,1.6,1.9],
       wires = $('.wire'),
+      gameOver = false,
 
       game = {
         div : $("#game"),
         width : 960,
         height : 500
       },
+      
+      /*bgs = [
+        {
+          div : $("#bg_farther"),
+          speed : 1
+        },
+        {
+          div : $("#bg_far"),
+          speed : 1.3
+        },
+        {
+          div : $("#bg_middle"),
+          speed : 1.6
+        },
+        {
+          div : $("#bg_front"),
+          speed : 1.9
+        }
+      ],*/
 
       speed = {
-        game : 40,
+        game : 20,
         bg : 1,
         cube : 10
       },
@@ -105,11 +126,15 @@ $(document).ready(function(){
   ball.div.css('display','none');
   wires.css('display','none');
   score.div.css('display','none');
+  $.each(cubes,(function(i,item){
+    item.div.css('display','none');
+    item.halfDiv.css('display','none');
+  }));
 
-  bgMovement(); 
+    bgMovement(); 
   //function dealing with the bakckground movement
     //no argument / no return
-    function bgMovement(){
+        function bgMovement(){
       var x=0;
 
       setInterval(function(){
@@ -120,12 +145,30 @@ $(document).ready(function(){
       }, 14);
     }
   
+  /*bgMovement(); 
+  //function dealing with the bakckground movement
+    //no argument / no return
+    function bgMovement(){
+      var x=0;
+      x -= bgs[0].speed;
+      setInterval(function(){
+        
+        $.each(bgs, function(i, item){
+          item.div.css("background-position", x);
+        });
+      }, 14);
+    }*/
+  
   //Launch game on click 
   playButton.click(function(){
     $('#menu').css('display','none');
     ball.div.css('display','block');
     wires.css('display','block');
     score.div.css('display','block');
+    $.each(cubes,(function(i,item){
+    item.div.css('display','block');
+    item.halfDiv.css('display','block');
+  }));
 
     init(); 
     //Game Initialisation
@@ -170,7 +213,7 @@ $(document).ready(function(){
       });
     }
 
-
+    
 
 
     //function dealing with the ball deplacement with the press of Arrow Up, Arrow Down, Z or S
@@ -178,12 +221,12 @@ $(document).ready(function(){
     $(document).keydown(function(key){
       var press = key.which || key.keyCode;
       if(press == 38 || press == 90){
-        if(ball.wirePos>0){
+        if(ball.wirePos>0 && gameOver==false){
           ball.wirePos --;
         }
         ball.div.css("top", movements[ball.wirePos]);  
       } else if(press == 40 || press == 83){
-        if(ball.wirePos<2){
+        if(ball.wirePos<2 && gameOver==false){
           ball.wirePos ++;
         }
         ball.div.css("top", movements[ball.wirePos]);
@@ -244,6 +287,7 @@ $(document).ready(function(){
             speed.cube = 0;
             speed.bg = 0;
             item.posX --;
+            gameOver = true;
             console.log("Game Over");
             console.log("Score :" + score.count);
           }
