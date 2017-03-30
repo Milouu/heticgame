@@ -284,3 +284,92 @@
 #wire3{
   top: 364px;
 }
+
+
+/************************
+
+      GAME OVER
+
+************************/
+
+.gameOver{
+    position: absolute;
+    text-align: center;
+    border-radius: 10px;
+    background-color: white;
+    background-color: rgba(255,255,255,0.8);
+    margin: 0 auto;
+    left: 300px;
+    width: 360px;
+    top: 30px;
+    height: 400px;
+    font-family: pixeled;
+    display: none;
+    z-index: 200;
+    }
+
+.gameOver h4{
+    margin-top: 0px;
+    padding-bottom: 20px;
+}
+
+
+.gameOver h1{
+ margin-bottom: 0;
+    margin-top: 10px;
+}
+
+.gameOver .button1 {
+    background-color: #6bb9f0;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+}
+.gameOver .button2 {
+    background-color: #f4b350;
+    margin-bottom: 20px;
+        padding-top: 10px;
+    padding-bottom: 10px;
+    
+}
+
+.gameOver .button3 {
+    background-color: #3fc380;
+        padding-top: 10px;
+    padding-bottom: 10px;
+    }
+
+.gameOver .button1:hover {
+    background-color: #7fc5ef;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+}
+.gameOver .button2:hover {
+    background-color: #f4bd73;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+}
+
+.gameOver .button3:hover {
+    background-color: #5acc8e;
+        padding-top: 10px;
+    padding-bottom: 10px;
+    }
+
+.gameOver div[class^='button'] a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+
+.gameOver div[class^='button']:hover a{
+    transition: all linear 0.3s;
+
+}
