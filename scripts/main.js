@@ -299,7 +299,7 @@ $(document).ready(function(){
             score.count +=10;
             playSound(goodCubeSound);
             generateNewBall(item);
-            speed.game *= 0.9;
+            speed.game *= 0.99;
           } else{
             stopSound(boSound);
             playSound(gameOverSound);
