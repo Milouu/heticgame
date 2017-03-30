@@ -307,13 +307,11 @@ container section
 
 
 body {
-<<<<<<< Updated upstream
+
     font-family: "Pixeled";
-=======
-    font-family: pixeled;
     margin:0;
     padding:0;
->>>>>>> Stashed changes
+
 }
 
 .accueil {
