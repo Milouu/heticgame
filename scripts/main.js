@@ -10,6 +10,7 @@ $(document).ready(function(){
         
         gameInterval = null,
         bgInterval = null,
+        over = false,
 
         game = {
           div : $("#game"),
@@ -170,6 +171,7 @@ $(document).ready(function(){
       game.div.css("width", game.width);
       game.div.css("height", game.height);
       ball.div.css("top", movements[ball.wirePos]);
+      over = false;
 
       var initColorTab = generateColorTab();
       for(var i=0; i<3; i++){
@@ -177,21 +179,29 @@ $(document).ready(function(){
         cubes[i].halfDiv.attr("src","images/" + initColorTab[i] + "_cube_1.png");
         cubes[i].color = initColorTab[i];
       }
-
-      gameInterval = setInterval(
-        function(){
-          score.div.html(score.count);
-          generateCubes();
-          moveCubes();
-          collision();
-        }
-        ,
-        speed.game
-      );
+      
+      increasedSpeed(speed.game);
     }
-
-    //Launching game BO : TO-DO -> loop
+    
+    
     playSound(boSound);
+    
+    
+    function increasedSpeed(speedBoost){
+      if(over){
+        return;
+      } else{
+        score.div.html(score.count);
+        generateCubes();
+        moveCubes();
+        collision();
+        console.log(new Date().getTime() + " : " + speedBoost );
+      
+        setTimeout(function(){
+          increasedSpeed(speed.game);
+        }, speedBoost);
+      }  
+    }
 
     //function dealing with cubes'movements
     //no argument / no return
@@ -275,6 +285,7 @@ $(document).ready(function(){
             score.count +=10;
             playSound(goodCubeSound);
             generateNewBall(item);
+            speed.game *= 0.9;
           } else{
             stopSound(boSound);
             playSound(gameOverSound);
@@ -311,7 +322,7 @@ $(document).ready(function(){
     //function stopping a sound
     //argument : sound -> sound to stop / no return
     function stopSound(sound){
-      sound.get(0).pause();
+      sound.get(0).stop();
     }
     
     var finalScore = $('.gameOver .finalScore');
@@ -320,7 +331,7 @@ $(document).ready(function(){
     function gameOver(){
       $('.gameOver').css('display','block');
       finalScore.html(score.count);
-      clearInterval(gameInterval);
+      over = true;
       clearInterval(bgInterval);
       startAgain();
     }
@@ -349,6 +360,8 @@ $(document).ready(function(){
         ball.div.css("top", movements[ball.wirePos]);
         
         gameLost = false;
+        score = 0;
+        
         
         init();
       }); 
