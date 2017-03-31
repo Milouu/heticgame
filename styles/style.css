@@ -61,8 +61,7 @@
   z-index: 300;
   margin-left: 300px;
   padding-bottom: 10px;
-  
-  
+  text-align: center;
 }
 
 #playButton, #shareButton, #joinUsButton{
@@ -105,19 +104,27 @@
   transition: all linear 0.3s;
 }
 
-#menu h1, #menu p{
+#joinUsButton a{
+  text-decoration: none;
+  display: inline-block;
+  width: 360px;
+  height: 300px;
+}
+
+#menu h1, #menu p, #menu a{
   text-align: center;
   color: #ffffff;
   font-family: "Pixeled", sans-serif;
 
 }
+
 #menu h1{
   font-size: 50px;
   cursor:default;
   
 }
 
-#menu p{
+#menu p, #menu a{
   padding: 10px;
   font-size: 20px;
   margin: 0 auto;
