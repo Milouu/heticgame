@@ -127,6 +127,14 @@ $(document).ready(function(){
         gameOverSound = $("#gameOverSound");
   
   
+  //Prevents arrows up and down from scrolling
+  window.addEventListener("keydown", function(e) {
+    // space and arrow keys
+    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
+  }, false);
+  
   //Hide unwanted elements in menu
   ball.div.css('display','none');
   wires.css('display','none');
