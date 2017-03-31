@@ -1,24 +1,24 @@
 $(document).ready(function(){
 
 
-    //variables  
-    var playButton = $('#playButton'),
-        movements = [54,189,339],
-        colors = ['orange', 'blue', 'green'],
-        bgs = $(".bg"),  
-        wires = $('.wire'),
-        
-        gameInterval = null,
-        bgInterval = null,
-        over = false,
+  //variables  
+  var playButton = $('#playButton'),
+      movements = [54,189,339],
+      colors = ['orange', 'blue', 'green'],
+      bgs = $(".bg"),  
+      wires = $('.wire'),
 
-        game = {
-          div : $("#game"),
-          width : 960,
-          height : 500
-        },
-        
-        gameLost = false,
+      gameInterval = null,
+      bgInterval = null,
+      over = false,
+
+      game = {
+        div : $("#game"),
+        width : 960,
+        height : 500
+      },
+
+      gameLost = false,
 
       speed = {
         game : 20,
@@ -39,102 +39,106 @@ $(document).ready(function(){
         count : 0
       },
 
-        speed = {
-          game : 23,
-          bg : 1,
-          cube : 10
-        },
+      speed = {
+        game : 23,
+        bg : 1,
+        cube : 10
+      },
 
-        ball = {
-          div : $("#ball"),
-          posX : parseInt($("#ball").css("left")),
-          posY : parseInt($("#ball").css("top")),
-          wirePos : 1,
+      ball = {
+        div : $("#ball"),
+        posX : parseInt($("#ball").css("left")),
+        posY : parseInt($("#ball").css("top")),
+        wirePos : 1,
+        color : 'orange'
+      },
+
+      score = {
+        div : $("#score"),
+        count : 0
+      },
+
+      cubes = [
+        {
+          div : $("#topCube"),
+          halfDiv : $("#halfTopCube"),
+          posX : 940,
+          posY : 0,
+          wirePos : 0,
+          row : 1,
           color : 'orange'
         },
 
-        score = {
-          div : $("#score"),
-          count : 0
+        {
+          div : $("#midCube"),
+          halfDiv : $("#halfMidCube"),
+          posX : 940,
+          posY : 150,
+          wirePos : 1, 
+          row : 1,
+          color : 'blue'
         },
 
-        cubes = [
-          {
-            div : $("#topCube"),
-            halfDiv : $("#halfTopCube"),
-            posX : 940,
-            posY : 0,
-            wirePos : 0,
-            row : 1,
-            color : 'orange'
-          },
+        {
+          div : $("#botCube"),
+          halfDiv : $("#halfBotCube"),
+          posX : 940,
+          posY : 300,
+          wirePos : 2, 
+          row : 1,
+          color : 'green'
+        },
 
-          {
-            div : $("#midCube"),
-            halfDiv : $("#halfMidCube"),
-            posX : 940,
-            posY : 150,
-            wirePos : 1, 
-            row : 1,
-            color : 'blue'
-          },
+        {
+          div : $("#topCube2"),
+          halfDiv : $("#halfTopCube2"),
+          posX : 1490,
+          posY : 0,
+          wirePos : 0,
+          row : 2,
+          color : null
+        },
 
-          {
-            div : $("#botCube"),
-            halfDiv : $("#halfBotCube"),
-            posX : 940,
-            posY : 300,
-            wirePos : 2, 
-            row : 1,
-            color : 'green'
-          },
+        {
+          div : $("#midCube2"),
+          halfDiv : $("#halfMidCube2"),
+          posX : 1490,
+          posY : 150,
+          wirePos : 1,
+          row : 2,
+          color : null
+        },
 
-          {
-            div : $("#topCube2"),
-            halfDiv : $("#halfTopCube2"),
-            posX : 1490,
-            posY : 0,
-            wirePos : 0,
-            row : 2,
-            color : null
-          },
+        {
+          div : $("#botCube2"),
+          halfDiv : $("#halfBotCube2"),
+          posX : 1490,
+          posY : 300,
+          wirePos : 2,
+          row : 2,
+          color : null
+        }
+      ],
 
-          {
-            div : $("#midCube2"),
-            halfDiv : $("#halfMidCube2"),
-            posX : 1490,
-            posY : 150,
-            wirePos : 1,
-            row : 2,
-            color : null
-          },
-
-          {
-            div : $("#botCube2"),
-            halfDiv : $("#halfBotCube2"),
-            posX : 1490,
-            posY : 300,
-            wirePos : 2,
-            row : 2,
-            color : null
-          }
-        ],
-
-        //Sound variables
-        menuSound = $("#menuSound"),
-        boSound = $("#boSound"),
-        goodCubeSound = $("#goodCubeSound"),
-        gameOverSound = $("#gameOverSound");
+      //Sound variables
+      menuSound = $("#menuSound"),
+      boSound = $("#boSound"),
+      goodCubeSound = $("#goodCubeSound"),
+      gameOverSound = $("#gameOverSound"),
   
-  
+      //gameOver menu variables
+      finalScore = $('.gameOver .finalScore'),
+      buttonRetry = $('.button2');
+
+
   //Prevents arrows up and down from scrolling
   window.addEventListener("keydown", function(e) {
     // space and arrow keys
     if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-        e.preventDefault();
+      e.preventDefault();
     }
   }, false);
-  
+
   //Hide unwanted elements in menu
   ball.div.css('display','none');
   wires.css('display','none');
@@ -144,10 +148,11 @@ $(document).ready(function(){
     item.halfDiv.css('display','none');
   }));
 
-    bgMovement(); 
+  
+  bgMovement(); 
+  
   //function dealing with the bakckground movement
-
-  //no argument / no return
+  //no argument / no return 
   function bgMovement(){
     var x=0;
     bgInterval = setInterval(
@@ -158,23 +163,23 @@ $(document).ready(function(){
         });
       }, 
       14
-      );
+    );
   }
 
   playSound(menuSound);
-  
-  //function launching a sound
-    //argument : sound -> sound to launch / no return
-    function playSound(sound){
-      sound.get(0).play();
-    }
 
-    //function stopping a sound
-    //argument : sound -> sound to stop / no return
-    function stopSound(sound){
-      sound.get(0).pause();
-      sound.get(0).load();
-    }
+  //function launching a sound
+  //argument : sound -> sound to launch / no return
+  function playSound(sound){
+    sound.get(0).play();
+  }
+
+  //function stopping a sound
+  //argument : sound -> sound to stop / no return
+  function stopSound(sound){
+    sound.get(0).pause();
+    sound.get(0).load();
+  }
 
   //Launch game on click 
   playButton.click(function(){
@@ -183,15 +188,15 @@ $(document).ready(function(){
     wires.css('display','block');
     score.div.css('display','block');
     $.each(cubes,(function(i,item){
-    item.div.css('display','block');
-    item.halfDiv.css('display','block');
-  }));
+      item.div.css('display','block');
+      item.halfDiv.css('display','block');
+    }));
 
     stopSound(menuSound);
     init(); 
+    
     //Game Initialisation
     function init(){ 
-      //initVariables();
       game.div.css("width", game.width);
       game.div.css("height", game.height);
       ball.div.css("top", movements[ball.wirePos]);
@@ -202,14 +207,16 @@ $(document).ready(function(){
         cubes[i].halfDiv.attr("src","images/" + initColorTab[i] + "_cube_1.png");
         cubes[i].color = initColorTab[i];
       }
+      
       playSound(boSound);
       increasedSpeed(speed.game);
     }
-    
-    
-    
-    
-    
+
+
+
+
+    //recursive function used to check new speed constantly
+    //argument -> speed at each the function calls herself
     function increasedSpeed(speedBoost){
       if(gameLost){
         return;
@@ -218,28 +225,12 @@ $(document).ready(function(){
         generateCubes();
         moveCubes();
         collision();
-      
+
         setTimeout(function(){
           increasedSpeed(speed.game);
         }, speedBoost);
       }  
     }
-
-    //function dealing with cubes'movements
-    //no argument / no return
-    function moveCubes(){
-      $.each(cubes, function(i, item){
-        item.posX -= speed.cube;
-        item.div.css("left", item.posX);
-        item.halfDiv.css("left", item.posX);
-
-        if(item.posX < -115){
-          item.posX = 940;
-        }
-      });
-    }
-
-    
 
 
     //function dealing with the ball deplacement with the press of Arrow Up, Arrow Down, Z or S
@@ -258,7 +249,21 @@ $(document).ready(function(){
         ball.div.css("top", movements[ball.wirePos]);
       }
     });
+    
 
+    //function dealing with cubes'movements
+    //no argument / no return
+    function moveCubes(){
+      $.each(cubes, function(i, item){
+        item.posX -= speed.cube;
+        item.div.css("left", item.posX);
+        item.halfDiv.css("left", item.posX);
+
+        if(item.posX < -115){
+          item.posX = 940;
+        }
+      });
+    }
 
 
 
@@ -334,11 +339,11 @@ $(document).ready(function(){
       ball.div.attr("src", "images/" + ball.color + "_ball.svg");
     }
 
-    
-    
-    var finalScore = $('.gameOver .finalScore');
-    var topScore = $('.gameOver .button1');
 
+
+  
+
+    //function stopping game movements and showing gameOver menu
     function gameOver(){
       $('.gameOver').css('display','block');
       finalScore.html(score.count);
@@ -347,14 +352,12 @@ $(document).ready(function(){
       startAgain();
     }
 
-
+    //function relaunching by clicking on the retry button
     function startAgain(){
-      var buttonRetry = $('.button2');
-
       buttonRetry.on('click',function(){
         $('.gameOver').css('display','none');
         buttonRetry.unbind();
-        
+
         $.each(cubes,function(i,item){
           if(item.row == 1){
             item.posX = 940;
@@ -366,14 +369,14 @@ $(document).ready(function(){
             item.halfDiv.css("left", 1490);
           }       
         });
-       
+
         ball.wirePos = 1;
         ball.div.css("top", movements[ball.wirePos]);
-        
+
         gameLost = false;
         score.count = 0;
         speed.game = 23;
-          
+
         init();
       }); 
     }
